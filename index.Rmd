@@ -10,6 +10,7 @@ output:
     toc: TRUE
     toc_float: TRUE
     theme: united
+    self_contained: true
 link-citations: yes
 fontsize: 12pt
 urlcolor: blue
