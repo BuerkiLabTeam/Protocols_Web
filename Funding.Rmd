@@ -1,0 +1,47 @@
+---
+title: "Funding"
+date: "`r Sys.Date()`"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: united
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{js logo-js, echo=FALSE}
+$(document).ready(function() {
+  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Images/G2PMineR_logo.jpg\" style=\"position:absolute; top:0; right:0; padding:10px; height:100px\"></div>');
+  $('#header').css('margin-right', '120px')
+});
+```
+
+# Main Funder
+
+This R-package was primarily funded by Idaho EPSCoR GEM3 Grant No. 12345 
+
+<center>
+[![TaBP](./GEM3Logo.png "TaBP")]()
+</center>
+
+# Acknowledgements
+
+The authors would like to acknowledge Patricia and Kevin Wojahn for providing the MacBook, electricity, and internet connection with which G2PMineR was developed. The authors would also like to acknowledge Carlos Dumaguit for his help testing the package during its early devel-opment.
+
+# Institution
+
+The authors are employees of Boise State University
+
+<center>
+[![TaBP](./Images/boisestate-primarylogo-2color-rgb.png "TaBP")]()
+</center>
+

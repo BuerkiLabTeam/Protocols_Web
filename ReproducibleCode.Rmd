@@ -1,0 +1,529 @@
+---
+title: "Reproducible Pipeline"
+subtitle: ""
+author: ""
+date: "`r Sys.Date()`"
+output:
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: united
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{js logo-js, echo=FALSE}
+$(document).ready(function() {
+  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Images/G2PMineR_logo.jpg\" style=\"position:absolute; top:0; right:0; padding:10px; height:100px\"></div>');
+  $('#header').css('margin-right', '120px')
+});
+```
+
+# **Inputs**
+
+The package takes a csv of abstract text (i.e. one abstract per row, all text for an abstract between quotes) and a csv of unique identifiers for each abstract.
+The abstract is agnostic to the source of the abstracts (PubMed, GoogleScholar, Web of Science, etc...) as long as they are in this format.
+Here for this vignette we'll use the results of a search in PubMed.
+Here is how the results were made (Note that VignetteIDs and VignetteAbstractsStrings is an object in the compiled package and so you do not need t complete this step if you are following along the vignette, unless you want to of course):
+
+```{r, eval = FALSE}
+# Run the lit search and retrieve abstract IDs
+res <- RISmed::EUtilsSummary("plant AND drought AND tolerance AND gene", type="esearch", db="pubmed", datetype='pdat', retmax=10000)
+VignetteIDs <- attr(res,"PMID")
+
+# Write out data
+write.csv(VignetteIDs, "VignetteIDs.csv", row.names = F)
+
+# Randomly sample 1000 abstracts for vignette
+set.seed(pi) #pseudorandom
+VignetteIDs <- VignetteIDs[sample(1:length(VignetteIDs), size = 1000, replace = F)]
+
+# Coerce IDs into correct class
+VignetteIDs <- as.numeric(as.character(VignetteIDs[,1]))
+
+# Get abstracts associated to VignetteIDs
+VignetteAbstractsStrings <- G2PMineR::AbstractsGetteR(VignetteIDs)
+
+# Write out data
+write.csv(VignetteAbstractsStrings, "VignetteAbstractsStrings.csv", row.names = F)
+
+```
+
+## Downloading input data used in vignette
+
+You can download the data used in the vignette from this link to FigShare:
+
+[Click here to be redirected to input datasets](https://figshare.com/articles/dataset/G2PMineR_Vignette_Input/13585586)
+
+# **Step 1: Literature search**
+
+# Module 1: Conduct literature search and assess its efficiency
+
+### Purpose
+
+The purpose of conducting the preliminary grouping analysis is to determine if your abstracts are sufficiently related for your purposes: i.e. the fewer groups there are (and the more they share in common) the better.
+If you have a lot of groups you may need to refine your search terms!
+
+### Methodology
+
+We use two functions here: AbstractsClusterMakeR and MembershipInvestigatoR.
+AbstractsClusterMakeR clusters the abstracts using text2vec, qgraph, and igraph internally.
+We have it use relaxed word movers distance and cluster walktrap analysis set at 4 steps.
+MembershipInvestigatoR investigates the membership of each group by looking at the nonstopwords words grouped-together abstracts share.
+
+```{r, eval = FALSE}
+# Read in vignette data 
+IDs <- read.csv("VignetteIDs.csv")
+AbstractsStrings <- read.csv("VignetteAbstractsStrings.csv")
+
+# If IDs is a data.frame convert it into a vector
+IDs <- as.vector(IDs[,1])
+
+# If AbstractsStrings is a data.frame convert it into a vector
+AbstractsStrings <- as.vector(AbstractsStrings[,1])
+
+# Remove IDs associated to corrupt or absent abstracts
+IDs <- as.character(IDs[!is.na(AbstractsStrings)])
+
+# Remove strings associated to corrupt or absent abstracts
+AbstractsStrings <- AbstractsStrings[!is.na(AbstractsStrings)]
+
+# Randomly sample 100 abstracts to avoid RAM issues
+randomnums <- sample(1:length(AbstractsStrings),100,replace=F)
+AbstractsStrings_rand <- AbstractsStrings[randomnums]
+IDs_rand <- IDs[randomnums]
+
+# Perform clustering analysis of abstracts
+NetList <- G2PMineR::AbstractsClusterMakeR(AbstractsStrings_rand, IDs_rand)
+
+# Investigate membership of abstract cluster groups
+meminv <- G2PMineR::MembershipInvestigatoR(NetList$Membership, threshold = 0.4, singularize = F)
+
+# Look at meminv to see if groups are similar enough to your liking
+```
+
+### Output
+
+The main output is meminv, a matrix whose columns are "Group" (i.e. group number) ,"NumberNonStopWords" (i.e. number of non-stopwords shared),"NumberNonStopWordsOverThreshold" (i.e. number of non-stopwords shared over a proprtion of abstracts over the user threshold),"WordsOverThreshold" (i.e. non-stopwords shared over a proprtion of abstracts over the user threshold, comma separated) ,"WordsOverThresholdAbstractCounts" (i.e. number of abstracts sharing non-stopwords over the user threshold),"NumberWordsUnderThreshold" (i.e. number of non-stopwords shared over a proprtion of abstracts under the user threshold).
+The secondary output is the network proper, in NetList\$net.
+It can be seen by running:
+
+```{r, eval = FALSE}
+# You can plot the network if you want to visualize the relationships
+plot(NetList$net)
+```
+
+## Cleaning Abstracts
+
+### Purpose
+
+The purpose of cleaning the abstrats is to remove HTML code and non-ASCII characters from the strings.
+This prevents the functions from being choked up by these irregularities.
+
+```{r, eval = FALSE}
+# Remove HTML elements that may be present in the abstract text
+AbstractsStrings <- G2PMineR::HTMLElementRemoveR(AbstractsStrings)
+
+# Remove non-ANSI characters from strings
+AbstractsStrings <- G2PMineR::AlphaNumericalizeR(AbstractsStrings)
+```
+
+# **Step 2: Mining (incl. quality controls) G2P data in abstracts using reference libraries**
+
+# Module 2: Mining taxonomy (Ta)
+
+### Purpose
+
+The purpose of mining the abstracts for taxonomy is to infer which organisms the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a species vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the species in an abstract which the author mentions are the ones they are studying.
+
+### Methodology
+
+We use one function here: SpeciesLookeR It takes the abstracts strings, unique IDs, and a special matrix that is provided with the package (and which varies according to the kingdom the user chooses and whether or not they decided to add any of their own data, in this case a data.frame of one column containing the taxa they wish to add e.g. "Genus species") and then determines which organisms are present in the abstracts.
+Taxonomical curation can be carried out on the results if you want to ensure that only accepted nomenclature is used.
+If the user desires to do this they can take the Species column of the AbstractsSpp object and pass it through their taxonomical curator of choice.
+Be sure to re-insert the curated taxonomy into the AbstractsSpp object and then update the Genus column by gsubing the species out of the full name.
+
+```{r, eval = FALSE}
+# Perform taxonomical mining
+AbstractsSpp <- G2PMineR::SpeciesLookeR(AbstractsStrings,IDs, Kingdom = "P", Add = NULL)
+write.csv(AbstractsSpp,"AbstractsSpp.csv")
+# Abbreviate species names
+SpeciesAbbrvs <- G2PMineR::SpeciesAbbreviatoR(AbstractsSpp)
+
+#Taxonomical curation can be carried out on the results if you want to ensure that only accepted nomenclature is used. If the user desires to do this they can take the Species column of the AbstractsSpp object and pass it through their taxonomical curator of choice. Be sure to re-insert the curated taxonomy into the AbstractsSpp object and then update the Genus column by gsubing the species out of the full name.
+
+```
+
+### Output
+
+It outputs a matrix whose columns are "Genus" (i.e. generic name) ,"Species" (i.e. specific epithet),and "Matches" (i.e. IDs of abstracts containing species, comma separated).
+
+### Warning
+
+There are some species that have names that match English words.
+These are generally from the genera *Cotyledon*, *Codon*, and *Unigenes* for plants, though it could be *Data* or others for animals.
+We recommend that you look at the output of SpeciesLookeR to see if a generic-level (i.e. not species-level) match of those terms occurred (i.e. no species of that genus were found) and then either excluding it or manually checking it.
+
+
+# Module 3: Mining genes (G)
+
+### Purpose
+
+The purpose of mining the abstracts for a set of genes is to infer which genes the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a gene vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the genes in an abstract which the authr mentions are the ones they are studying.
+
+### Methodology
+
+We use three functions here: SpeciesAbbreviatoR, GenesLookeR, SynonymReplaceR, UtilityGradeR, and GeneNamesGroupeR.
+SpeciesAbbreviatoR takes the output of SpeciesLookeR and returns a vector of species abbreviations.
+GenesLookeR takes the abstracts strings, unique IDs, the kingom of interest either P for Plantae, A for Animalia, or F for Fungi, and Add, an option where the user can add their own genes as long as they are in a data.frame with three columns: gene name, gene family, and gene ontology.
+It then determines which genes are present in the abstracts.
+It uses internal cmpiled data containing the names, families, and ontologies for all of the SwissProt genes for the kingdom of interest as of August 2020.
+SynonymReplaceR replaces the synonym names with the accepted gene names and cmbines their outputs.
+We chose to restrict genes to SwissProt curated genes because they are associated with a known ontology and are correctly spelled.
+UtilityGradeR takes the output of SynonymReplaceR and grades each match based on their utility using this scale: A = In text AND has ontologies AND has SwissProt family, B = In text AND has ontologies BUT NOT SwissProt family, C = In text AND has SwissProt family BUT NOT ontologies, F = NOT in text.
+DON'T be alarmed if there are a lot of F's, those are just genes that had no matches at all (i.e. may have nothing to do with your analysis).
+You can remove all of the rows where match is "No" to eliminate these.
+GeneNamesGroupeR is an optional function that creates artificial gene groups based on their names by removing the numbers behind them.
+It takes in the output of SynonymReplaceR.
+GeneFrequencySifter is an optional function that allows users to remove low frequency genes.
+It shows the user summary stats about the gene matches and asks for where it ought to place a cut-off.
+
+```{r, eval = FALSE}
+
+# Perform gene mining
+GenesOut <- G2PMineR::GenesLookeR(AbstractsStrings, IDs, Kingdom = "P", Add = NULL, SppAbbr = SpeciesAbbrvs)
+write.csv(GenesOut,"GenesOutWithSyns.csv",row.names=F)
+
+# Replace gene synonyms with accepted gene names
+GenesOut <- G2PMineR::SynonymReplaceR(GenesOut, Kingdom = "P")
+write.csv(GenesOut,"GenesOut.csv",row.names=F)
+
+# (Optional) Create artificial gene groups
+GeneGroups <- G2PMineR::GeneNamesGroupeR(as.vector(GenesOut[,1]))
+
+# (Optional) Grade the usefulness of matches
+GeneGrades <- G2PMineR::UtilityGradeR(GenesOut, Kingdom = "P", Add = NULL, Groups = as.data.frame(GeneGroups))
+
+# (Optional) Sift genes by frequency, NOTE this asks for a user input through a prompt
+SiftedGenes <- G2PMineR::GeneFrequencySifteR(GenesOut,IDs)
+```
+
+### Output
+
+It outputs a matrix whose columns are "Gene" (i.e. gene name) ,"InOrNot" (i.e. boolean in at least one abstract or not),"Matches" (i.e. IDs of abstracts containing gene, comma separated),"InSitus" (i.e. exact matches in abstract text) ,"Family" (i.e. gene family from UniProt),"Ontology" (i.e. ontologies from UniProt, comma separated).
+UtilityGradeR outputs a matrix of the same length as GenesOut with the gene names in the first column and the grades in the second.
+GeneNamesGroupeR outputs (if given a vector) the gene groups as a vector or if given GenesOut it appends the gene groups to the last column
+
+
+# Module 4: Mining phenotypes (P)
+
+### Purpose
+
+The purpose of mining the abstracts for phenotypes is to infer which traits the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a trait vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the traits in an abstract which the author mentions are the ones they are studying.
+
+### Methodology
+
+We use one function here: PhenotypeLookeR It takes the abstracts strings, unique IDs, and a special matrix that is provided with the package and that varies according to the kingdom chosen and whether or not the user wishes t add their own data and then determines which organisms are present in the abstracts.
+MoBotTerms contains a manually curated and expanded library of phenotypic words.
+
+```{r, eval = FALSE}
+# Mine for phenotype words
+AbsPhen <- G2PMineR::PhenotypeLookeR(AbstractsStrings, IDs, Kingdom = "P", Add = NULL)
+write.csv(AbsPhen,"AbsPhen.csv",row.names=F)
+```
+
+### Output
+
+It outputs a matrix whose columns are "PhenoWord" (i.e. phenotypic words), "NumberAbs" (i.e. number of abstracts in which that phenotypic word appeared at least one), "1stWordPair" (most common bigram cntaining this phenotypic word), "2ndWordPair" (second most common bigram cntaining this phenotypic word), "3rdWordPair" (third most common bigram cntaining this phenotypic word), "AbsMatches" (i.e. IDs of abstracts containing phenotypic word, comma separated).
+
+# Module 5: Summarize and consensus Ta, G, and P data.
+
+## Calculating proportion of abstract matches
+
+### Purpose
+
+The purpose of calculating proportion of abstract matches is to see whether the proportion of abstracts that have at least one species, gene, and/or phenotype match is suitable to the user.
+
+### Methodology
+
+We use the function AbstractsProportionCalculator to calculate this proportion for each of the result types.
+
+```{r, eval = FALSE}
+# Calculate proportion of abstracts with at least one G match
+G2PMineR::AbstractsProportionCalculator(GenesOut, IDs)
+
+# Calculate proportion of abstracts with at least one Ta match
+G2PMineR::AbstractsProportionCalculator(AbstractsSpp, IDs)
+
+# Calculate proportion of abstracts with at least one P match
+G2PMineR::AbstractsProportionCalculator(AbsPhen, IDs)  
+
+```
+
+### Output
+
+The overall output is a proportion ranging from 0-1 indicating the proportion of abstracts that contain at least one match for this data type.
+The user determines if this proportion is sufficient or whether the search terms need to be broadened/new library terms need to be added.
+
+## Making the output matrices more user-friendly
+
+If the user does not wish to have the matches/ontologies bound within comma-separated strings, they can run these functions.
+These are necessary for running the consensus functions.
+
+```{r, eval = FALSE}
+# Make gene mining results longform
+GenesOutLong <- G2PMineR::MakeGenesOutLongform(GenesOut)
+
+# Make taxonomy mining results longform
+AbstractsSppLong <- G2PMineR::MakeAbstractsSppLongform(AbstractsSpp)
+
+# Make phenotype words mining results longform
+AbsPhenLong <- G2PMineR::MakeAbsPhenLongform(AbsPhen)
+
+```
+
+## Making consensus datasets
+
+### Purpose
+
+The user can make datasets that contain only abstracts with 2 or all of the types of matches (i.e. excluding those that match fewer than they want).
+This way they can restrict their analyses to only articles which have at least 2 or all types of matches.
+
+### Methodology
+
+This is done using the ConsensusInferreR function.
+It takes in the longform datasets inferred in module 7 as well as the native datasets inferred in modules 2, 3, and 4.
+
+```{r, eval = FALSE}
+
+# To make a consensus of all three
+All_Consensus <- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = AbstractsSpp,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+# To make a consensus of just a pair
+GbyP_Consensus <- G2PMineR::ConsensusInferreR(Ta = NULL,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = NULL,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+
+# Here is how to get out the restricted consensus-only G and P results
+GenesCon <- All_Consensus$`Genes Consensus-Only`
+PhenoCon <- All_Consensus$`Phenotypes Consensus-Only`
+
+# Here is how to plot the Venn diagram
+ConsensusVenn <- All_Consensus$Venn
+require(VennDiagram)
+pdf("ConsensusVenn.pdf")
+grid.draw(ConsensusVenn)
+dev.off()
+# Here is how to get the consensus matrix proper
+ConsensusMatrix <- All_Consensus$IntersectionMatrix
+
+# Here is how to get the list of consensus IDs
+ConsensusIDs <- All_Consensus$ConsensusIDs
+```
+
+
+# Module 6: Internal network analyses for G, Ta and P data
+
+## Pre-network quantitative analysis
+
+### Purpose
+
+The purpose of visualizing quanta of intratype word matches is to provide a picture of the quantity of matches for each term so the most heavily-used terms can be unveiled.
+
+### Methodology
+
+We use one function here: MatchesBarPlotteR.
+It takes the words and matches of the results of one type of mining creats a bar plot input matrix of n bars.
+
+```{r, eval = FALSE}
+
+# Make T matches barplot matrix
+SppBarPlotDF <- G2PMineR::MatchesBarPlotteR(AbstractsSpp$Species, AbstractsSpp$Matches,n = 25)
+
+# Clean G output
+Genez <- as.data.frame(GenesOut[which(GenesOut$InOrNot == "Yes"),]) #select only those with at least one match
+Genez <- data.frame(Genez$Gene,Genez$Matches) #form new matrix
+Genez <- unique(Genez) #make it unique
+
+# Make G matches barplot matrix
+GenesBarPlotDF <- G2PMineR::MatchesBarPlotteR(Genez[,1], Genez[,2], n = 25)
+
+# Make P matches barplot matrix
+PhenoBarPlotDF <- G2PMineR::MatchesBarPlotteR(AbsPhen$PhenoWord, AbsPhen$AbsMatches,n = 25)
+
+pdf("barplots.pdf")
+# Make Ta barplot
+barplot(SppBarPlotDF[,2], names.arg = SppBarPlotDF[,1], las=2, ylim = c(0,250), ylab = "Number of Absracts")
+
+# Make G barplot
+barplot(GenesBarPlotDF[,2], names.arg = GenesBarPlotDF[,1], las=2, ylim = c(0,100), ylab = "Number of Absracts")
+
+# Make P barplot
+barplot(PhenoBarPlotDF[,2], names.arg = PhenoBarPlotDF[,1], las=2, ylim = c(0,1000), ylab = "Number of Absracts",cex.names =0.75)
+dev.off()
+```
+
+### Output
+
+The overall output are matrices and bar graphs for genes, taxonomy, and phenotypes
+
+## Internal interrelations network analysis
+
+### Purpose
+
+The purpose of visualizing internal mining-type results is to see the common cooccurence pattersn within mining types, i.e. which phenotypes are studied together, which species are studied together, and which genes are studied together.
+
+### Methodology
+
+We use two functions here: InternalPairwiseDistanceInferreR and TopN_PickeR_Internal.
+InternalPairwiseDistanceInferreR takes the words and matches of the results of one type of mining and infers a normalized matchwise distance between each word.
+It normalizes them based on the proportion of total abstracts the smallest number of matches for one of the two members for each pair.
+TopN_PickeR_Internal takes the output of InternalPairwiseDistanceInferreR and subsets it to include only the most-similar n (as defined by the user) pairs.
+
+```{r, eval = FALSE}
+
+# Calculate internal matchwise distance matrix for Ta
+SppInt <- G2PMineR::InternalPairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+SppIntSmall <- G2PMineR::TopN_PickeR_Internal(SppInt, n = 50, decreasing = T)
+# Assign result to distance matrix class
+rwmsS <- as.dist(SppIntSmall, diag = F, upper = FALSE)
+
+
+# Calculate internal matchwise distance matrix for G
+GenInt <- G2PMineR::InternalPairwiseDistanceInferreR(Genez[,1], Genez[,2], allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+GenIntSmall <- G2PMineR::TopN_PickeR_Internal(GenInt, n = 50, decreasing = T)
+# Assign result to distance matrix class
+rwmsG <- as.dist(GenIntSmall, diag = F, upper = FALSE)
+
+# Calculate internal matchwise distance matrix for P
+PhenInt <- G2PMineR::InternalPairwiseDistanceInferreR(AbsPhen$PhenoWord, AbsPhen$AbsMatches, allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+PhenIntSmall <- G2PMineR::TopN_PickeR_Internal(PhenInt, n = 100, decreasing = T)
+# Assign result to distance matrix class
+rwmsP <- as.dist(PhenIntSmall, diag = FALSE, upper = FALSE)
+
+pdf("qgraphs.pdf")
+# Plot Ta internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsS, layout ="circle", labels =  gsub("_"," ",rownames(SppIntSmall)), DoNotPlot=F,label.cex=0.4)
+
+# Plot G internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsG, layout ="circle", labels = rownames(GenIntSmall), DoNotPlot=F,label.cex=0.4)
+
+# Plot P internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsP, layout ="circle", labels = rownames(PhenIntSmall),DoNotPlot=F,label.cex=0.4)
+dev.off()
+```
+
+### Output
+
+The overall output are matrices and networks for genes, taxonomy, and phenotypes
+
+# **Step 3: Genome to phenome interactions (rooted into taxonomical framework) **
+
+# Module 7: Infer bipartite graphs to link G, Ta and P data
+
+## Making bipartite graphs 
+
+### Purpose
+
+The purpose of integrating the results of the genes, species, and phenotypes analyses is to provide a picture of the coocurences of these terms so that gene-phenotype, gene-species, and species-phenotype interactions can be visualized in the form of bipartite graphs and accessed more manually through matrices.
+
+### Methodology
+
+We use three functions here: SpeciesPrepareR, PairwiseDistanceInferreR, and TopN_PickeR.
+SpeciesPrepareR takes the output of SpeciesLookeR and reformats it so that it can be eaten by the next function.
+PairwiseDistanceInferreR takes the words and matches of the results of two types of mining and infers a normalized matchwise distance between each word of the input types (e.g. species and phenotype, gene and phenotype).
+It normalizes them based on the proportion of total abstracts the smallest number of matches for one of the two members for each pair.
+TopN_PickeR takes the output of PairwiseDistanceInferreR and subsets it to include only the most-similar n (as defined by the user) pairs.
+
+```{r, eval = FALSE}
+# Calculate phenotypes vs species inter-datatype matchwise distances
+PhenoSpecies <- G2PMineR::PairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, AbsPhen$PhenoWord, AbsPhen$AbsMatches, allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+PhenoSpeciesSmall <- G2PMineR::TopN_PickeR(PhenoSpecies, n = 100, decreasing = T)
+
+# Calculate genes vs species inter-datatype matchwise distances
+GeneSpecies <- G2PMineR::PairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, Genez, Genez[,2], allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+GeneSpeciesSmall <- G2PMineR::TopN_PickeR(GeneSpecies, n = 100, decreasing = T)
+
+# Calculate phenotypes vs genes inter-datatype matchwise distances
+PhenoGenes <- G2PMineR::PairwiseDistanceInferreR(AbsPhen$PhenoWord, AbsPhen$AbsMatches, Genez[,1], Genez[,2], allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+PhenoGenesSmall <- G2PMineR::TopN_PickeR(PhenoGenes, n = 50, decreasing = T)
+
+pdf("bipartites.pdf")
+# Plot G2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoGenesSmall, text.rot=90, col.interaction = "gray",labsize = 0.75)
+
+# Plot Ta2G internal matchwise relations network based on the distance matrix
+bipartite::plotweb(GeneSpeciesSmall, text.rot=90, col.interaction = "gray",labsize = 0.75)
+
+# Plot Ta2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoSpeciesSmall, text.rot=90, col.interaction = "gray",labsize = 0.75)
+dev.off()
+```
+
+### Output
+
+The overall output is a matrix (not neccessarily square) that can be used to make the bipartite graphs and the bipartite graphs themselves.
+
+
+## Making biparitite graphs for just the consensus data
+
+
+```{r, eval = FALSE}
+
+# To make a consensus of all three
+All_Consensus <- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = AbstractsSpp,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+
+# Here is how to get out the restricted consensus-only G and P results
+GenesCon <- All_Consensus$`Genes Consensus-Only`
+PhenoCon <- All_Consensus$`Phenotypes Consensus-Only`
+
+# Calculate phenotypes vs genes inter-datatype matchwise distances
+PhenoGenes <- G2PMineR::PairwiseDistanceInferreR(PhenoCon$PhenoWord, 
+                                                 PhenoCon$AbsMatches, 
+                                                 GenesCon$Gene, 
+                                                 GenesCon$Matches, 
+                                                 allabsnum = NumberConsensusAbs)
+# Select only the top 50 (Optional, recommended for clarity)
+PhenoGenesSmall <- G2PMineR::TopN_PickeR(PhenoGenes, n = 50, decreasing = T)
+
+# Plot Consensus G2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoGenesSmall, text.rot=90, col.interaction = "gray",labsize = 0.75)
+
+
+
+```
+
+### Output
+
+ConsensusInferreR returns a list where the first object is a consensus matrix that shows the matches per each publication, a venn diagram that shows the proportion of overlaps, two or three objects that represent the native databases but which only include the consensus publications, and finally a list of the unique IDs of the consensus overlap.
+If the user does not wish to include a specific type they should set the corresponding inputs of that type to NULL.
+At least 2 types must be input to the function, else it will return an error.
+The user can use the conensus-only versions of the native matrices to build a bipartite graph as shown below.
+ConsensusInferreR 

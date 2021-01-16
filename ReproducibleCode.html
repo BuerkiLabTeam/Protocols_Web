@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="" />
+
+<meta name="date" content="2021-01-15" />
+
+<title>Reproducible Pipeline</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">G2PMineR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="ReproducibleCode.html">Reproducible Pipeline</a>
+</li>
+<li>
+  <a href="Figures.html">Vignette Figures</a>
+</li>
+<li>
+  <a href="Tables.html">Vignette Objects</a>
+</li>
+<li>
+  <a href="Lexicon.html">Function Lexicon</a>
+</li>
+<li>
+  <a href="References.html">References</a>
+</li>
+<li>
+  <a href="Funding.html">Funding</a>
+</li>
+<li>
+  <a href="License.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Reproducible Pipeline</h1>
+<h4 class="date">2021-01-15</h4>
+
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Images/G2PMineR_logo.jpg\" style=\"position:absolute; top:0; right:0; padding:10px; height:100px\"></div>');
+  $('#header').css('margin-right', '120px')
+});
+</script>
+<div id="inputs" class="section level1">
+<h1><span class="header-section-number">1</span> <strong>Inputs</strong></h1>
+<p>The package takes a csv of abstract text (i.e. one abstract per row, all text for an abstract between quotes) and a csv of unique identifiers for each abstract.
+The abstract is agnostic to the source of the abstracts (PubMed, GoogleScholar, Web of Science, etc…) as long as they are in this format.
+Here for this vignette we’ll use the results of a search in PubMed.
+Here is how the results were made (Note that VignetteIDs and VignetteAbstractsStrings is an object in the compiled package and so you do not need t complete this step if you are following along the vignette, unless you want to of course):</p>
+<pre class="r"><code># Run the lit search and retrieve abstract IDs
+res &lt;- RISmed::EUtilsSummary(&quot;plant AND drought AND tolerance AND gene&quot;, type=&quot;esearch&quot;, db=&quot;pubmed&quot;, datetype=&#39;pdat&#39;, retmax=10000)
+VignetteIDs &lt;- attr(res,&quot;PMID&quot;)
+
+# Write out data
+write.csv(VignetteIDs, &quot;VignetteIDs.csv&quot;, row.names = F)
+
+# Randomly sample 1000 abstracts for vignette
+set.seed(pi) #pseudorandom
+VignetteIDs &lt;- VignetteIDs[sample(1:length(VignetteIDs), size = 1000, replace = F)]
+
+# Coerce IDs into correct class
+VignetteIDs &lt;- as.numeric(as.character(VignetteIDs[,1]))
+
+# Get abstracts associated to VignetteIDs
+VignetteAbstractsStrings &lt;- G2PMineR::AbstractsGetteR(VignetteIDs)
+
+# Write out data
+write.csv(VignetteAbstractsStrings, &quot;VignetteAbstractsStrings.csv&quot;, row.names = F)</code></pre>
+<div id="downloading-input-data-used-in-vignette" class="section level2">
+<h2><span class="header-section-number">1.1</span> Downloading input data used in vignette</h2>
+<p>You can download the data used in the vignette from this link to FigShare:</p>
+<p><a href="https://figshare.com/articles/dataset/G2PMineR_Vignette_Input/13585586">Click here to be redirected to input datasets</a></p>
+</div>
+</div>
+<div id="step-1-literature-search" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>Step 1: Literature search</strong></h1>
+</div>
+<div id="module-1-conduct-literature-search-and-assess-its-efficiency" class="section level1">
+<h1><span class="header-section-number">3</span> Module 1: Conduct literature search and assess its efficiency</h1>
+<div id="purpose" class="section level3">
+<h3><span class="header-section-number">3.0.1</span> Purpose</h3>
+<p>The purpose of conducting the preliminary grouping analysis is to determine if your abstracts are sufficiently related for your purposes: i.e. the fewer groups there are (and the more they share in common) the better.
+If you have a lot of groups you may need to refine your search terms!</p>
+</div>
+<div id="methodology" class="section level3">
+<h3><span class="header-section-number">3.0.2</span> Methodology</h3>
+<p>We use two functions here: AbstractsClusterMakeR and MembershipInvestigatoR.
+AbstractsClusterMakeR clusters the abstracts using text2vec, qgraph, and igraph internally.
+We have it use relaxed word movers distance and cluster walktrap analysis set at 4 steps.
+MembershipInvestigatoR investigates the membership of each group by looking at the nonstopwords words grouped-together abstracts share.</p>
+<pre class="r"><code># Read in vignette data 
+IDs &lt;- read.csv(&quot;VignetteIDs.csv&quot;)
+AbstractsStrings &lt;- read.csv(&quot;VignetteAbstractsStrings.csv&quot;)
+
+# If IDs is a data.frame convert it into a vector
+IDs &lt;- as.vector(IDs[,1])
+
+# If AbstractsStrings is a data.frame convert it into a vector
+AbstractsStrings &lt;- as.vector(AbstractsStrings[,1])
+
+# Remove IDs associated to corrupt or absent abstracts
+IDs &lt;- as.character(IDs[!is.na(AbstractsStrings)])
+
+# Remove strings associated to corrupt or absent abstracts
+AbstractsStrings &lt;- AbstractsStrings[!is.na(AbstractsStrings)]
+
+# Randomly sample 100 abstracts to avoid RAM issues
+randomnums &lt;- sample(1:length(AbstractsStrings),100,replace=F)
+AbstractsStrings_rand &lt;- AbstractsStrings[randomnums]
+IDs_rand &lt;- IDs[randomnums]
+
+# Perform clustering analysis of abstracts
+NetList &lt;- G2PMineR::AbstractsClusterMakeR(AbstractsStrings_rand, IDs_rand)
+
+# Investigate membership of abstract cluster groups
+meminv &lt;- G2PMineR::MembershipInvestigatoR(NetList$Membership, threshold = 0.4, singularize = F)
+
+# Look at meminv to see if groups are similar enough to your liking</code></pre>
+</div>
+<div id="output" class="section level3">
+<h3><span class="header-section-number">3.0.3</span> Output</h3>
+<p>The main output is meminv, a matrix whose columns are “Group” (i.e. group number) ,“NumberNonStopWords” (i.e. number of non-stopwords shared),“NumberNonStopWordsOverThreshold” (i.e. number of non-stopwords shared over a proprtion of abstracts over the user threshold),“WordsOverThreshold” (i.e. non-stopwords shared over a proprtion of abstracts over the user threshold, comma separated) ,“WordsOverThresholdAbstractCounts” (i.e. number of abstracts sharing non-stopwords over the user threshold),“NumberWordsUnderThreshold” (i.e. number of non-stopwords shared over a proprtion of abstracts under the user threshold).
+The secondary output is the network proper, in NetList$net.
+It can be seen by running:</p>
+<pre class="r"><code># You can plot the network if you want to visualize the relationships
+plot(NetList$net)</code></pre>
+</div>
+<div id="cleaning-abstracts" class="section level2">
+<h2><span class="header-section-number">3.1</span> Cleaning Abstracts</h2>
+<div id="purpose-1" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Purpose</h3>
+<p>The purpose of cleaning the abstrats is to remove HTML code and non-ASCII characters from the strings.
+This prevents the functions from being choked up by these irregularities.</p>
+<pre class="r"><code># Remove HTML elements that may be present in the abstract text
+AbstractsStrings &lt;- G2PMineR::HTMLElementRemoveR(AbstractsStrings)
+
+# Remove non-ANSI characters from strings
+AbstractsStrings &lt;- G2PMineR::AlphaNumericalizeR(AbstractsStrings)</code></pre>
+</div>
+</div>
+</div>
+<div id="step-2-mining-incl.-quality-controls-g2p-data-in-abstracts-using-reference-libraries" class="section level1">
+<h1><span class="header-section-number">4</span> <strong>Step 2: Mining (incl. quality controls) G2P data in abstracts using reference libraries</strong></h1>
+</div>
+<div id="module-2-mining-taxonomy-ta" class="section level1">
+<h1><span class="header-section-number">5</span> Module 2: Mining taxonomy (Ta)</h1>
+<div id="purpose-2" class="section level3">
+<h3><span class="header-section-number">5.0.1</span> Purpose</h3>
+<p>The purpose of mining the abstracts for taxonomy is to infer which organisms the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a species vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the species in an abstract which the author mentions are the ones they are studying.</p>
+</div>
+<div id="methodology-1" class="section level3">
+<h3><span class="header-section-number">5.0.2</span> Methodology</h3>
+<p>We use one function here: SpeciesLookeR It takes the abstracts strings, unique IDs, and a special matrix that is provided with the package (and which varies according to the kingdom the user chooses and whether or not they decided to add any of their own data, in this case a data.frame of one column containing the taxa they wish to add e.g. “Genus species”) and then determines which organisms are present in the abstracts.
+Taxonomical curation can be carried out on the results if you want to ensure that only accepted nomenclature is used.
+If the user desires to do this they can take the Species column of the AbstractsSpp object and pass it through their taxonomical curator of choice.
+Be sure to re-insert the curated taxonomy into the AbstractsSpp object and then update the Genus column by gsubing the species out of the full name.</p>
+<pre class="r"><code># Perform taxonomical mining
+AbstractsSpp &lt;- G2PMineR::SpeciesLookeR(AbstractsStrings,IDs, Kingdom = &quot;P&quot;, Add = NULL)
+write.csv(AbstractsSpp,&quot;AbstractsSpp.csv&quot;)
+# Abbreviate species names
+SpeciesAbbrvs &lt;- G2PMineR::SpeciesAbbreviatoR(AbstractsSpp)
+
+#Taxonomical curation can be carried out on the results if you want to ensure that only accepted nomenclature is used. If the user desires to do this they can take the Species column of the AbstractsSpp object and pass it through their taxonomical curator of choice. Be sure to re-insert the curated taxonomy into the AbstractsSpp object and then update the Genus column by gsubing the species out of the full name.</code></pre>
+</div>
+<div id="output-1" class="section level3">
+<h3><span class="header-section-number">5.0.3</span> Output</h3>
+<p>It outputs a matrix whose columns are “Genus” (i.e. generic name) ,“Species” (i.e. specific epithet),and “Matches” (i.e. IDs of abstracts containing species, comma separated).</p>
+</div>
+<div id="warning" class="section level3">
+<h3><span class="header-section-number">5.0.4</span> Warning</h3>
+<p>There are some species that have names that match English words.
+These are generally from the genera <em>Cotyledon</em>, <em>Codon</em>, and <em>Unigenes</em> for plants, though it could be <em>Data</em> or others for animals.
+We recommend that you look at the output of SpeciesLookeR to see if a generic-level (i.e. not species-level) match of those terms occurred (i.e. no species of that genus were found) and then either excluding it or manually checking it.</p>
+</div>
+</div>
+<div id="module-3-mining-genes-g" class="section level1">
+<h1><span class="header-section-number">6</span> Module 3: Mining genes (G)</h1>
+<div id="purpose-3" class="section level3">
+<h3><span class="header-section-number">6.0.1</span> Purpose</h3>
+<p>The purpose of mining the abstracts for a set of genes is to infer which genes the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a gene vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the genes in an abstract which the authr mentions are the ones they are studying.</p>
+</div>
+<div id="methodology-2" class="section level3">
+<h3><span class="header-section-number">6.0.2</span> Methodology</h3>
+<p>We use three functions here: SpeciesAbbreviatoR, GenesLookeR, SynonymReplaceR, UtilityGradeR, and GeneNamesGroupeR.
+SpeciesAbbreviatoR takes the output of SpeciesLookeR and returns a vector of species abbreviations.
+GenesLookeR takes the abstracts strings, unique IDs, the kingom of interest either P for Plantae, A for Animalia, or F for Fungi, and Add, an option where the user can add their own genes as long as they are in a data.frame with three columns: gene name, gene family, and gene ontology.
+It then determines which genes are present in the abstracts.
+It uses internal cmpiled data containing the names, families, and ontologies for all of the SwissProt genes for the kingdom of interest as of August 2020.
+SynonymReplaceR replaces the synonym names with the accepted gene names and cmbines their outputs.
+We chose to restrict genes to SwissProt curated genes because they are associated with a known ontology and are correctly spelled.
+UtilityGradeR takes the output of SynonymReplaceR and grades each match based on their utility using this scale: A = In text AND has ontologies AND has SwissProt family, B = In text AND has ontologies BUT NOT SwissProt family, C = In text AND has SwissProt family BUT NOT ontologies, F = NOT in text.
+DON’T be alarmed if there are a lot of F’s, those are just genes that had no matches at all (i.e. may have nothing to do with your analysis).
+You can remove all of the rows where match is “No” to eliminate these.
+GeneNamesGroupeR is an optional function that creates artificial gene groups based on their names by removing the numbers behind them.
+It takes in the output of SynonymReplaceR.
+GeneFrequencySifter is an optional function that allows users to remove low frequency genes.
+It shows the user summary stats about the gene matches and asks for where it ought to place a cut-off.</p>
+<pre class="r"><code># Perform gene mining
+GenesOut &lt;- G2PMineR::GenesLookeR(AbstractsStrings, IDs, Kingdom = &quot;P&quot;, Add = NULL, SppAbbr = SpeciesAbbrvs)
+write.csv(GenesOut,&quot;GenesOutWithSyns.csv&quot;,row.names=F)
+
+# Replace gene synonyms with accepted gene names
+GenesOut &lt;- G2PMineR::SynonymReplaceR(GenesOut, Kingdom = &quot;P&quot;)
+write.csv(GenesOut,&quot;GenesOut.csv&quot;,row.names=F)
+
+# (Optional) Create artificial gene groups
+GeneGroups &lt;- G2PMineR::GeneNamesGroupeR(as.vector(GenesOut[,1]))
+
+# (Optional) Grade the usefulness of matches
+GeneGrades &lt;- G2PMineR::UtilityGradeR(GenesOut, Kingdom = &quot;P&quot;, Add = NULL, Groups = as.data.frame(GeneGroups))
+
+# (Optional) Sift genes by frequency, NOTE this asks for a user input through a prompt
+SiftedGenes &lt;- G2PMineR::GeneFrequencySifteR(GenesOut,IDs)</code></pre>
+</div>
+<div id="output-2" class="section level3">
+<h3><span class="header-section-number">6.0.3</span> Output</h3>
+<p>It outputs a matrix whose columns are “Gene” (i.e. gene name) ,“InOrNot” (i.e. boolean in at least one abstract or not),“Matches” (i.e. IDs of abstracts containing gene, comma separated),“InSitus” (i.e. exact matches in abstract text) ,“Family” (i.e. gene family from UniProt),“Ontology” (i.e. ontologies from UniProt, comma separated).
+UtilityGradeR outputs a matrix of the same length as GenesOut with the gene names in the first column and the grades in the second.
+GeneNamesGroupeR outputs (if given a vector) the gene groups as a vector or if given GenesOut it appends the gene groups to the last column</p>
+</div>
+</div>
+<div id="module-4-mining-phenotypes-p" class="section level1">
+<h1><span class="header-section-number">7</span> Module 4: Mining phenotypes (P)</h1>
+<div id="purpose-4" class="section level3">
+<h3><span class="header-section-number">7.0.1</span> Purpose</h3>
+<p>The purpose of mining the abstracts for phenotypes is to infer which traits the authors were investigating.
+We acknowledge that this function is not able to determine if an author was studying a trait vs just mentioning it in their abstract, but after extensive reading of abstracts we have decided that in almost all circumstance the traits in an abstract which the author mentions are the ones they are studying.</p>
+</div>
+<div id="methodology-3" class="section level3">
+<h3><span class="header-section-number">7.0.2</span> Methodology</h3>
+<p>We use one function here: PhenotypeLookeR It takes the abstracts strings, unique IDs, and a special matrix that is provided with the package and that varies according to the kingdom chosen and whether or not the user wishes t add their own data and then determines which organisms are present in the abstracts.
+MoBotTerms contains a manually curated and expanded library of phenotypic words.</p>
+<pre class="r"><code># Mine for phenotype words
+AbsPhen &lt;- G2PMineR::PhenotypeLookeR(AbstractsStrings, IDs, Kingdom = &quot;P&quot;, Add = NULL)
+write.csv(AbsPhen,&quot;AbsPhen.csv&quot;,row.names=F)</code></pre>
+</div>
+<div id="output-3" class="section level3">
+<h3><span class="header-section-number">7.0.3</span> Output</h3>
+<p>It outputs a matrix whose columns are “PhenoWord” (i.e. phenotypic words), “NumberAbs” (i.e. number of abstracts in which that phenotypic word appeared at least one), “1stWordPair” (most common bigram cntaining this phenotypic word), “2ndWordPair” (second most common bigram cntaining this phenotypic word), “3rdWordPair” (third most common bigram cntaining this phenotypic word), “AbsMatches” (i.e. IDs of abstracts containing phenotypic word, comma separated).</p>
+</div>
+</div>
+<div id="module-5-summarize-and-consensus-ta-g-and-p-data." class="section level1">
+<h1><span class="header-section-number">8</span> Module 5: Summarize and consensus Ta, G, and P data.</h1>
+<div id="calculating-proportion-of-abstract-matches" class="section level2">
+<h2><span class="header-section-number">8.1</span> Calculating proportion of abstract matches</h2>
+<div id="purpose-5" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Purpose</h3>
+<p>The purpose of calculating proportion of abstract matches is to see whether the proportion of abstracts that have at least one species, gene, and/or phenotype match is suitable to the user.</p>
+</div>
+<div id="methodology-4" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Methodology</h3>
+<p>We use the function AbstractsProportionCalculator to calculate this proportion for each of the result types.</p>
+<pre class="r"><code># Calculate proportion of abstracts with at least one G match
+G2PMineR::AbstractsProportionCalculator(GenesOut, IDs)
+
+# Calculate proportion of abstracts with at least one Ta match
+G2PMineR::AbstractsProportionCalculator(AbstractsSpp, IDs)
+
+# Calculate proportion of abstracts with at least one P match
+G2PMineR::AbstractsProportionCalculator(AbsPhen, IDs)  </code></pre>
+</div>
+<div id="output-4" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> Output</h3>
+<p>The overall output is a proportion ranging from 0-1 indicating the proportion of abstracts that contain at least one match for this data type.
+The user determines if this proportion is sufficient or whether the search terms need to be broadened/new library terms need to be added.</p>
+</div>
+</div>
+<div id="making-the-output-matrices-more-user-friendly" class="section level2">
+<h2><span class="header-section-number">8.2</span> Making the output matrices more user-friendly</h2>
+<p>If the user does not wish to have the matches/ontologies bound within comma-separated strings, they can run these functions.
+These are necessary for running the consensus functions.</p>
+<pre class="r"><code># Make gene mining results longform
+GenesOutLong &lt;- G2PMineR::MakeGenesOutLongform(GenesOut)
+
+# Make taxonomy mining results longform
+AbstractsSppLong &lt;- G2PMineR::MakeAbstractsSppLongform(AbstractsSpp)
+
+# Make phenotype words mining results longform
+AbsPhenLong &lt;- G2PMineR::MakeAbsPhenLongform(AbsPhen)</code></pre>
+</div>
+<div id="making-consensus-datasets" class="section level2">
+<h2><span class="header-section-number">8.3</span> Making consensus datasets</h2>
+<div id="purpose-6" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Purpose</h3>
+<p>The user can make datasets that contain only abstracts with 2 or all of the types of matches (i.e. excluding those that match fewer than they want).
+This way they can restrict their analyses to only articles which have at least 2 or all types of matches.</p>
+</div>
+<div id="methodology-5" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Methodology</h3>
+<p>This is done using the ConsensusInferreR function.
+It takes in the longform datasets inferred in module 7 as well as the native datasets inferred in modules 2, 3, and 4.</p>
+<pre class="r"><code># To make a consensus of all three
+All_Consensus &lt;- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = AbstractsSpp,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+# To make a consensus of just a pair
+GbyP_Consensus &lt;- G2PMineR::ConsensusInferreR(Ta = NULL,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = NULL,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+
+# Here is how to get out the restricted consensus-only G and P results
+GenesCon &lt;- All_Consensus$`Genes Consensus-Only`
+PhenoCon &lt;- All_Consensus$`Phenotypes Consensus-Only`
+
+# Here is how to plot the Venn diagram
+ConsensusVenn &lt;- All_Consensus$Venn
+require(VennDiagram)
+pdf(&quot;ConsensusVenn.pdf&quot;)
+grid.draw(ConsensusVenn)
+dev.off()
+# Here is how to get the consensus matrix proper
+ConsensusMatrix &lt;- All_Consensus$IntersectionMatrix
+
+# Here is how to get the list of consensus IDs
+ConsensusIDs &lt;- All_Consensus$ConsensusIDs</code></pre>
+</div>
+</div>
+</div>
+<div id="module-6-internal-network-analyses-for-g-ta-and-p-data" class="section level1">
+<h1><span class="header-section-number">9</span> Module 6: Internal network analyses for G, Ta and P data</h1>
+<div id="pre-network-quantitative-analysis" class="section level2">
+<h2><span class="header-section-number">9.1</span> Pre-network quantitative analysis</h2>
+<div id="purpose-7" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Purpose</h3>
+<p>The purpose of visualizing quanta of intratype word matches is to provide a picture of the quantity of matches for each term so the most heavily-used terms can be unveiled.</p>
+</div>
+<div id="methodology-6" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> Methodology</h3>
+<p>We use one function here: MatchesBarPlotteR.
+It takes the words and matches of the results of one type of mining creats a bar plot input matrix of n bars.</p>
+<pre class="r"><code># Make T matches barplot matrix
+SppBarPlotDF &lt;- G2PMineR::MatchesBarPlotteR(AbstractsSpp$Species, AbstractsSpp$Matches,n = 25)
+
+# Clean G output
+Genez &lt;- as.data.frame(GenesOut[which(GenesOut$InOrNot == &quot;Yes&quot;),]) #select only those with at least one match
+Genez &lt;- data.frame(Genez$Gene,Genez$Matches) #form new matrix
+Genez &lt;- unique(Genez) #make it unique
+
+# Make G matches barplot matrix
+GenesBarPlotDF &lt;- G2PMineR::MatchesBarPlotteR(Genez[,1], Genez[,2], n = 25)
+
+# Make P matches barplot matrix
+PhenoBarPlotDF &lt;- G2PMineR::MatchesBarPlotteR(AbsPhen$PhenoWord, AbsPhen$AbsMatches,n = 25)
+
+pdf(&quot;barplots.pdf&quot;)
+# Make Ta barplot
+barplot(SppBarPlotDF[,2], names.arg = SppBarPlotDF[,1], las=2, ylim = c(0,250), ylab = &quot;Number of Absracts&quot;)
+
+# Make G barplot
+barplot(GenesBarPlotDF[,2], names.arg = GenesBarPlotDF[,1], las=2, ylim = c(0,100), ylab = &quot;Number of Absracts&quot;)
+
+# Make P barplot
+barplot(PhenoBarPlotDF[,2], names.arg = PhenoBarPlotDF[,1], las=2, ylim = c(0,1000), ylab = &quot;Number of Absracts&quot;,cex.names =0.75)
+dev.off()</code></pre>
+</div>
+<div id="output-5" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> Output</h3>
+<p>The overall output are matrices and bar graphs for genes, taxonomy, and phenotypes</p>
+</div>
+</div>
+<div id="internal-interrelations-network-analysis" class="section level2">
+<h2><span class="header-section-number">9.2</span> Internal interrelations network analysis</h2>
+<div id="purpose-8" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Purpose</h3>
+<p>The purpose of visualizing internal mining-type results is to see the common cooccurence pattersn within mining types, i.e. which phenotypes are studied together, which species are studied together, and which genes are studied together.</p>
+</div>
+<div id="methodology-7" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Methodology</h3>
+<p>We use two functions here: InternalPairwiseDistanceInferreR and TopN_PickeR_Internal.
+InternalPairwiseDistanceInferreR takes the words and matches of the results of one type of mining and infers a normalized matchwise distance between each word.
+It normalizes them based on the proportion of total abstracts the smallest number of matches for one of the two members for each pair.
+TopN_PickeR_Internal takes the output of InternalPairwiseDistanceInferreR and subsets it to include only the most-similar n (as defined by the user) pairs.</p>
+<pre class="r"><code># Calculate internal matchwise distance matrix for Ta
+SppInt &lt;- G2PMineR::InternalPairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+SppIntSmall &lt;- G2PMineR::TopN_PickeR_Internal(SppInt, n = 50, decreasing = T)
+# Assign result to distance matrix class
+rwmsS &lt;- as.dist(SppIntSmall, diag = F, upper = FALSE)
+
+
+# Calculate internal matchwise distance matrix for G
+GenInt &lt;- G2PMineR::InternalPairwiseDistanceInferreR(Genez[,1], Genez[,2], allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+GenIntSmall &lt;- G2PMineR::TopN_PickeR_Internal(GenInt, n = 50, decreasing = T)
+# Assign result to distance matrix class
+rwmsG &lt;- as.dist(GenIntSmall, diag = F, upper = FALSE)
+
+# Calculate internal matchwise distance matrix for P
+PhenInt &lt;- G2PMineR::InternalPairwiseDistanceInferreR(AbsPhen$PhenoWord, AbsPhen$AbsMatches, allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+PhenIntSmall &lt;- G2PMineR::TopN_PickeR_Internal(PhenInt, n = 100, decreasing = T)
+# Assign result to distance matrix class
+rwmsP &lt;- as.dist(PhenIntSmall, diag = FALSE, upper = FALSE)
+
+pdf(&quot;qgraphs.pdf&quot;)
+# Plot Ta internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsS, layout =&quot;circle&quot;, labels =  gsub(&quot;_&quot;,&quot; &quot;,rownames(SppIntSmall)), DoNotPlot=F,label.cex=0.4)
+
+# Plot G internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsG, layout =&quot;circle&quot;, labels = rownames(GenIntSmall), DoNotPlot=F,label.cex=0.4)
+
+# Plot P internal matchwise relations network based on the distance matrix
+qgraph::qgraph(rwmsP, layout =&quot;circle&quot;, labels = rownames(PhenIntSmall),DoNotPlot=F,label.cex=0.4)
+dev.off()</code></pre>
+</div>
+<div id="output-6" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Output</h3>
+<p>The overall output are matrices and networks for genes, taxonomy, and phenotypes</p>
+</div>
+</div>
+</div>
+<div id="step-3-genome-to-phenome-interactions-rooted-into-taxonomical-framework" class="section level1">
+<h1><span class="header-section-number">10</span> <strong>Step 3: Genome to phenome interactions (rooted into taxonomical framework) </strong></h1>
+</div>
+<div id="module-7-infer-bipartite-graphs-to-link-g-ta-and-p-data" class="section level1">
+<h1><span class="header-section-number">11</span> Module 7: Infer bipartite graphs to link G, Ta and P data</h1>
+<div id="making-bipartite-graphs" class="section level2">
+<h2><span class="header-section-number">11.1</span> Making bipartite graphs</h2>
+<div id="purpose-9" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> Purpose</h3>
+<p>The purpose of integrating the results of the genes, species, and phenotypes analyses is to provide a picture of the coocurences of these terms so that gene-phenotype, gene-species, and species-phenotype interactions can be visualized in the form of bipartite graphs and accessed more manually through matrices.</p>
+</div>
+<div id="methodology-8" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Methodology</h3>
+<p>We use three functions here: SpeciesPrepareR, PairwiseDistanceInferreR, and TopN_PickeR.
+SpeciesPrepareR takes the output of SpeciesLookeR and reformats it so that it can be eaten by the next function.
+PairwiseDistanceInferreR takes the words and matches of the results of two types of mining and infers a normalized matchwise distance between each word of the input types (e.g. species and phenotype, gene and phenotype).
+It normalizes them based on the proportion of total abstracts the smallest number of matches for one of the two members for each pair.
+TopN_PickeR takes the output of PairwiseDistanceInferreR and subsets it to include only the most-similar n (as defined by the user) pairs.</p>
+<pre class="r"><code># Calculate phenotypes vs species inter-datatype matchwise distances
+PhenoSpecies &lt;- G2PMineR::PairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, AbsPhen$PhenoWord, AbsPhen$AbsMatches, allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+PhenoSpeciesSmall &lt;- G2PMineR::TopN_PickeR(PhenoSpecies, n = 100, decreasing = T)
+
+# Calculate genes vs species inter-datatype matchwise distances
+GeneSpecies &lt;- G2PMineR::PairwiseDistanceInferreR(AbstractsSpp$Species, AbstractsSpp$Matches, Genez, Genez[,2], allabsnum = length(IDs))
+# Select only the top 100 (Optional, recommended for clarity)
+GeneSpeciesSmall &lt;- G2PMineR::TopN_PickeR(GeneSpecies, n = 100, decreasing = T)
+
+# Calculate phenotypes vs genes inter-datatype matchwise distances
+PhenoGenes &lt;- G2PMineR::PairwiseDistanceInferreR(AbsPhen$PhenoWord, AbsPhen$AbsMatches, Genez[,1], Genez[,2], allabsnum = length(IDs))
+# Select only the top 50 (Optional, recommended for clarity)
+PhenoGenesSmall &lt;- G2PMineR::TopN_PickeR(PhenoGenes, n = 50, decreasing = T)
+
+pdf(&quot;bipartites.pdf&quot;)
+# Plot G2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoGenesSmall, text.rot=90, col.interaction = &quot;gray&quot;,labsize = 0.75)
+
+# Plot Ta2G internal matchwise relations network based on the distance matrix
+bipartite::plotweb(GeneSpeciesSmall, text.rot=90, col.interaction = &quot;gray&quot;,labsize = 0.75)
+
+# Plot Ta2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoSpeciesSmall, text.rot=90, col.interaction = &quot;gray&quot;,labsize = 0.75)
+dev.off()</code></pre>
+</div>
+<div id="output-7" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Output</h3>
+<p>The overall output is a matrix (not neccessarily square) that can be used to make the bipartite graphs and the bipartite graphs themselves.</p>
+</div>
+</div>
+<div id="making-biparitite-graphs-for-just-the-consensus-data" class="section level2">
+<h2><span class="header-section-number">11.2</span> Making biparitite graphs for just the consensus data</h2>
+<pre class="r"><code># To make a consensus of all three
+All_Consensus &lt;- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
+                                            G = GenesOutLong,
+                                            P = AbsPhenLong,
+                                            AbstractsSpp = AbstractsSpp,
+                                            GenesOut = GenesOut,
+                                            AbsPhen = AbsPhen)
+
+# Here is how to get out the restricted consensus-only G and P results
+GenesCon &lt;- All_Consensus$`Genes Consensus-Only`
+PhenoCon &lt;- All_Consensus$`Phenotypes Consensus-Only`
+
+# Calculate phenotypes vs genes inter-datatype matchwise distances
+PhenoGenes &lt;- G2PMineR::PairwiseDistanceInferreR(PhenoCon$PhenoWord, 
+                                                 PhenoCon$AbsMatches, 
+                                                 GenesCon$Gene, 
+                                                 GenesCon$Matches, 
+                                                 allabsnum = NumberConsensusAbs)
+# Select only the top 50 (Optional, recommended for clarity)
+PhenoGenesSmall &lt;- G2PMineR::TopN_PickeR(PhenoGenes, n = 50, decreasing = T)
+
+# Plot Consensus G2P internal matchwise relations network based on the distance matrix
+bipartite::plotweb(PhenoGenesSmall, text.rot=90, col.interaction = &quot;gray&quot;,labsize = 0.75)</code></pre>
+<div id="output-8" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> Output</h3>
+<p>ConsensusInferreR returns a list where the first object is a consensus matrix that shows the matches per each publication, a venn diagram that shows the proportion of overlaps, two or three objects that represent the native databases but which only include the consensus publications, and finally a list of the unique IDs of the consensus overlap.
+If the user does not wish to include a specific type they should set the corresponding inputs of that type to NULL.
+At least 2 types must be input to the function, else it will return an error.
+The user can use the conensus-only versions of the native matrices to build a bipartite graph as shown below.
+ConsensusInferreR</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
