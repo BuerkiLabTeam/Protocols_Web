@@ -94,6 +94,20 @@ devtools::install_github("BuerkiLabTeam/G2PMineR")
 
 # Input/Output Table
 
+```{r lexicon, eval = T, echo=F, warning = FALSE, message=FALSE}
+lex <- read.csv("VignetteMatrix.csv") 
+
+###~~~
+#Produce final table
+###~~~
+
+rownames(lex) <- NULL
+###~~~
+#Plot timetable in doc
+###~~~
+#Plot table
+DT::datatable(lex, extensions = 'Buttons', options = list(dom = 'Blfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')), rownames= FALSE)
+```
 
 # Author contributions
 
