@@ -11,7 +11,7 @@
 
 <meta name="author" content="" />
 
-<meta name="date" content="2021-01-15" />
+<meta name="date" content="2021-02-25" />
 
 <title>Reproducible Pipeline</title>
 
@@ -396,7 +396,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reproducible Pipeline</h1>
-<h4 class="date">2021-01-15</h4>
+<h4 class="date">2021-02-25</h4>
 
 </div>
 
@@ -845,7 +845,7 @@ All_Consensus &lt;- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
 # Here is how to get out the restricted consensus-only G and P results
 GenesCon &lt;- All_Consensus$`Genes Consensus-Only`
 PhenoCon &lt;- All_Consensus$`Phenotypes Consensus-Only`
-
+NumberConsensusAbs &lt;- length(All_Consensus[[&quot;ConsensusIDs&quot;]])
 # Calculate phenotypes vs genes inter-datatype matchwise distances
 PhenoGenes &lt;- G2PMineR::PairwiseDistanceInferreR(PhenoCon$PhenoWord, 
                                                  PhenoCon$AbsMatches, 

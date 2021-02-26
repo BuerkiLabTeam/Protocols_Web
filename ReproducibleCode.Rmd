@@ -503,7 +503,7 @@ All_Consensus <- G2PMineR::ConsensusInferreR(Ta = AbstractsSppLong,
 # Here is how to get out the restricted consensus-only G and P results
 GenesCon <- All_Consensus$`Genes Consensus-Only`
 PhenoCon <- All_Consensus$`Phenotypes Consensus-Only`
-
+NumberConsensusAbs <- length(All_Consensus[["ConsensusIDs"]])
 # Calculate phenotypes vs genes inter-datatype matchwise distances
 PhenoGenes <- G2PMineR::PairwiseDistanceInferreR(PhenoCon$PhenoWord, 
                                                  PhenoCon$AbsMatches, 
