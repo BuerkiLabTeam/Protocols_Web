@@ -49,6 +49,10 @@ knitr::write_bib(.packages(), file = 'packages.bib')
 
 There is a gap in the conceptual framework linking genes to phenotypes (G2P) for non-model or-ganisms, as most non-model organisms do not yet have genomic resources readily available. To address this, researchers often perform literature reviews to understand G2P linkages by curating a list of likely gene candidates, hinging upon other studies already conducted in closely related systems. Sifting through hundreds to thousands of articles is a cumbersome task that slows down the scientific process and may introduce bias into a study.  To fill this gap, we created G2PMineR, a free and open-source literature mining tool developed specifically for G2P research. This package uses automation to make the G2P review process efficient and unbiased, while also generating hypothesized associations between genes and phenotypes within a taxonomical framework. We applied the package to a literature review for drought-tolerance in plants. The analysis provides biologically meaningful the results within the known framework of drought tolerance in plants. Overall, the package is useful for conducting literature reviews for ge-nome-to-phenome projects and also has broad appeal to scientists investigating a wide range of study systems as it can conduct analyses under the auspices of three different kingdoms (Plantae, Animalia, and Fungi).
 
+# Link to Publication
+
+https://doi.org/10.3390/genes12020293
+
 # Overview
 
 ## Steps of a G2PMineR analysis

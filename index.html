@@ -11,7 +11,7 @@
 
 <meta name="author" content="John M.A. Wojahn, Stephanie J. Galla, Anthony E. Melton, Sven Buerki" />
 
-<meta name="date" content="2021-02-25" />
+<meta name="date" content="2021-03-19" />
 
 <title>G2PMineR</title>
 
@@ -415,7 +415,7 @@ div.tocify {
 <h1 class="title toc-ignore">G2PMineR</h1>
 <h3 class="subtitle">A genome to phenome literature review approach</h3>
 <h4 class="author">John M.A. Wojahn, Stephanie J. Galla, Anthony E. Melton, Sven Buerki</h4>
-<h4 class="date">2021-02-25</h4>
+<h4 class="date">2021-03-19</h4>
 
 </div>
 
@@ -430,10 +430,14 @@ $(document).ready(function() {
 <h1><span class="header-section-number">1</span> Why use G2PMineR?</h1>
 <p>There is a gap in the conceptual framework linking genes to phenotypes (G2P) for non-model or-ganisms, as most non-model organisms do not yet have genomic resources readily available. To address this, researchers often perform literature reviews to understand G2P linkages by curating a list of likely gene candidates, hinging upon other studies already conducted in closely related systems. Sifting through hundreds to thousands of articles is a cumbersome task that slows down the scientific process and may introduce bias into a study. To fill this gap, we created G2PMineR, a free and open-source literature mining tool developed specifically for G2P research. This package uses automation to make the G2P review process efficient and unbiased, while also generating hypothesized associations between genes and phenotypes within a taxonomical framework. We applied the package to a literature review for drought-tolerance in plants. The analysis provides biologically meaningful the results within the known framework of drought tolerance in plants. Overall, the package is useful for conducting literature reviews for ge-nome-to-phenome projects and also has broad appeal to scientists investigating a wide range of study systems as it can conduct analyses under the auspices of three different kingdoms (Plantae, Animalia, and Fungi).</p>
 </div>
+<div id="link-to-publication" class="section level1">
+<h1><span class="header-section-number">2</span> Link to Publication</h1>
+<p><a href="https://doi.org/10.3390/genes12020293" class="uri">https://doi.org/10.3390/genes12020293</a></p>
+</div>
 <div id="overview" class="section level1">
-<h1><span class="header-section-number">2</span> Overview</h1>
+<h1><span class="header-section-number">3</span> Overview</h1>
 <div id="steps-of-a-g2pminer-analysis" class="section level2">
-<h2><span class="header-section-number">2.1</span> Steps of a G2PMineR analysis</h2>
+<h2><span class="header-section-number">3.1</span> Steps of a G2PMineR analysis</h2>
 <p>The G2PMineR package is composed of 3 steps and eight modules. Step 1 and step 2 module 5 are optional:</p>
 <p><em>Step 1:</em> Literature search</p>
 <ul>
@@ -453,14 +457,14 @@ $(document).ready(function() {
 </ul>
 </div>
 <div id="g2pminer-flowchart" class="section level2">
-<h2><span class="header-section-number">2.2</span> G2PMineR Flowchart</h2>
+<h2><span class="header-section-number">3.2</span> G2PMineR Flowchart</h2>
 <p>[<img src="Flowchart.png" title="FC" alt="FC" />]</p>
 </div>
 </div>
 <div id="installing-g2pminer" class="section level1">
-<h1><span class="header-section-number">3</span> Installing G2PMineR</h1>
+<h1><span class="header-section-number">4</span> Installing G2PMineR</h1>
 <div id="dependencies" class="section level2">
-<h2><span class="header-section-number">3.1</span> Dependencies</h2>
+<h2><span class="header-section-number">4.1</span> Dependencies</h2>
 <p>devtools</p>
 <p>You can find G2PMineR on GitHub at wojahn/G2PMineR.</p>
 <pre class="r"><code># First install devtools
@@ -471,19 +475,19 @@ devtools::install_github(&quot;BuerkiLabTeam/G2PMineR&quot;)</code></pre>
 </div>
 </div>
 <div id="inputoutput-table" class="section level1">
-<h1><span class="header-section-number">4</span> Input/Output Table</h1>
-<div id="htmlwidget-cfb40c4f15bb6c79313b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cfb40c4f15bb6c79313b">{"x":{"filter":"none","extensions":["Buttons"],"data":[[1,2,2,2,2,2,3],[1,2,3,4,5,6,7],["none","SwissGenesCombo; AnimalSwissGenesCombo; FungiSwissGenesCombo;GeneSynonymyKey; AnimalGenesSynonymyKey; FungiGeneSysnonymyKey","TracheophytaSpp; AnimalSpp; FungiSpp","MoBotTerms; AnimalTerms; FungiTerms; Webster","none","none","none"],["AbstractsGetteR; AbstractsClusterMakeR; MembershipInvestigatoR; HTMLElementRemoveR; AlphaNumericalizeR","GenesLookeR; SynonymReplaceR; UtilityGradeR; GeneNamesGroupeR; GeneFrequencySifteR","SpeciesLookeR; SpeciesAbbreviatoR","PhenotypeLookeR","AbstractsProportionCalculator; MatchesBarPlotteR; MakeGenesOutLongform; ConsensusInferreR","InternalPairwiseDistanceInferreR; TopN_PickeR_Internal","PairwiseDistanceInferreR; TopN_PickeR"],["Search query OR user-supplied abstracts and ids","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; GenesOut; AbstractsSpp; AbsPhen","GenesOut; AbstractsSpp; AbsPhen","GenesOut; AbstractsSpp; AbsPhen"],["AbstractsStrings, IDs, NetList, meminv","GenesOut; GeneGrades; GeneGroups; SiftedGenes","AbstractsSpp; SpeciesAbbrvs","AbsPhen","GenesBarPLot; SppBarPLot; PhenoBarPLot; Genez; Consensus matrices; longform matrices","GenesNetwork; SppNetwork; PhenoNetwork","PhenoSpecies Bipartite; GeneSpecies Bipartite; PhenoGenes Bipartite"],["RISmed::EUtilsSummary","none","none","none","none","qgraph::qgraph","bipartite::plotweb"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Section<\/th>\n      <th>Module<\/th>\n      <th>Databases<\/th>\n      <th>Functions<\/th>\n      <th>Input<\/th>\n      <th>Output<\/th>\n      <th>ExternalFunctions<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Blfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"className":"dt-right","targets":[0,1]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<h1><span class="header-section-number">5</span> Input/Output Table</h1>
+<div id="htmlwidget-8d48fe00f225d908db4e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d48fe00f225d908db4e">{"x":{"filter":"none","extensions":["Buttons"],"data":[[1,2,2,2,2,2,3],[1,2,3,4,5,6,7],["none","SwissGenesCombo; AnimalSwissGenesCombo; FungiSwissGenesCombo;GeneSynonymyKey; AnimalGenesSynonymyKey; FungiGeneSysnonymyKey","TracheophytaSpp; AnimalSpp; FungiSpp","MoBotTerms; AnimalTerms; FungiTerms; Webster","none","none","none"],["AbstractsGetteR; AbstractsClusterMakeR; MembershipInvestigatoR; HTMLElementRemoveR; AlphaNumericalizeR","GenesLookeR; SynonymReplaceR; UtilityGradeR; GeneNamesGroupeR; GeneFrequencySifteR","SpeciesLookeR; SpeciesAbbreviatoR","PhenotypeLookeR","AbstractsProportionCalculator; MatchesBarPlotteR; MakeGenesOutLongform; ConsensusInferreR","InternalPairwiseDistanceInferreR; TopN_PickeR_Internal","PairwiseDistanceInferreR; TopN_PickeR"],["Search query OR user-supplied abstracts and ids","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional)","AbstractsStrings; IDs; GenesOut; AbstractsSpp; AbsPhen","GenesOut; AbstractsSpp; AbsPhen","GenesOut; AbstractsSpp; AbsPhen"],["AbstractsStrings, IDs, NetList, meminv","GenesOut; GeneGrades; GeneGroups; SiftedGenes","AbstractsSpp; SpeciesAbbrvs","AbsPhen","GenesBarPLot; SppBarPLot; PhenoBarPLot; Genez; Consensus matrices; longform matrices","GenesNetwork; SppNetwork; PhenoNetwork","PhenoSpecies Bipartite; GeneSpecies Bipartite; PhenoGenes Bipartite"],["RISmed::EUtilsSummary","none","none","none","none","qgraph::qgraph","bipartite::plotweb"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Section<\/th>\n      <th>Module<\/th>\n      <th>Databases<\/th>\n      <th>Functions<\/th>\n      <th>Input<\/th>\n      <th>Output<\/th>\n      <th>ExternalFunctions<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Blfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"className":"dt-right","targets":[0,1]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="author-contributions" class="section level1">
-<h1><span class="header-section-number">5</span> Author contributions</h1>
+<h1><span class="header-section-number">6</span> Author contributions</h1>
 <p>Conceptualization, J.M.A.W. and S.B.; methodology, J.W.A.W.; software, J.M.A.W.; validation, S.J.G., A.E.M., S.B. and J.M.A.W.; formal analysis, J.M.A.W.; investigation, J.M.A.W.; resources, J.M.A.W.; data curation, J.M.A.W.; writing—original draft preparation, J.M.A.W.; writing—review and editing, S.B., A.M., A.E.M., and S.J.G.; visualization, J.M.A.W.; su-pervision, S.B.; project administration, S.B.; funding acquisition, S.B. All authors have read and agreed to the published version of the manuscript.</p>
 <div id="refs">
 
 </div>
 </div>
 <div id="appendix-1" class="section level1 appendix">
-<h1><span class="header-section-number">6</span> Appendix 1</h1>
+<h1><span class="header-section-number">7</span> Appendix 1</h1>
 <p>Citations of all R packages used to generate this report.</p>
 <p>[1] J. Allaire, Y. Xie, J. McPherson, et al. <em>rmarkdown: Dynamic
 Documents for R</em>. R package version 2.6. 2020. &lt;URL:
