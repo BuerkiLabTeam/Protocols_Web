@@ -1,0 +1,301 @@
+---
+title: "Laboratory Protocols"
+date: "`r Sys.Date()`"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: flatly
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Extraction Protocol For Tropical and Temperate Plant Leaf Tissue
+
+**Michael Wojahn, Sven Buerki**
+
+**2018**
+
+## Materials:
+
+* Qiagen Plant Mini Kit
+* Vortex mixer
+* 1.5 mL Conical Microfuge Tubes
+* 2mL Globe Scientific Round-Bottomed Tubes 
+* P1000 and tips
+* P200 and tips
+* P10 and tips
+* Reagent Ethanol
+* Cleaning Ethanol
+* Cleaning Bleach
+* Scale
+* Weigh Boat
+* Tweezers
+* Scissors
+* Kimwipes
+* Tube Rack
+* 5mm Titanium Beads
+* TissueLyser
+* Oscillating Dry Bath
+* Microfuge
+* Freezer Block Rack
+* Foam Microfuge Filler Blocks
+* Spoontula
+
+## Reagent Key:
+
+* Reagent 1 = AP1 
+* Reagent 2 = RNAse 
+* Reagent 3 = P3 
+* Reagent 4 = AW1 
+* Reagent 5 = AW2 
+* Reagent 6 = AE
+
+## Steps:
+1. Clean counter with bleach and ethanol
+2. Add reagent ethanol to Qiagen reagents 4 and 5 according to their caps if not done
+already
+3. Place tubes in rack thusly:
+    a. 2 mL round-bottomed tube 
+    b. Lavender spin column
+    c. 1.5 mL microfuge tube
+    d. White spin column
+    e. Empty waste tube
+    f. 1.5 mL microfuge tube
+4. Label tubes with IDs
+5. Preheat oscillating dry bath to 65 degrees C and max oscillations. Take off plastic lid by
+sliding it backwards
+6. Place 3 beads in round-bottomed tube
+7. Shake loose silica from sample packet
+8. Using tweezers take out leaf strips and weigh out 0.5 g using weigh boat and scale.
+Never use up all the sample, always leave at least a little material.
+9. Using tweezers, hold each leaf strip over open round-bottomed tube and cut into thin bits
+using scissors. Do not add sand
+10. Close tube and place in TissueLyser. Close lid very tightly and turn the unit on. Beat for
+3 min at setting 50
+11. Check that all samples have become powder, if any have not beat them again at 1 min
+intervals until they become powder
+12. Check that there are no cracks in the round-bottomed tubes, if there are any transfer the
+powder and beads to a fresh tube. If you want to be safe you can do this for all tubes
+13. Add 800 uL reagent 1 and 5 uL RNAse to round-bottomed tubes and place in oscillating
+dry bath for 30 min.
+14. Take tubes out of oscillating dry bath and place in room temperature rack
+15. Take freezer block rack out of -20 freezer and place behind your tube rack
+16. Add 130 uL of reagent 3 to each tube, vortex, and immediately place tube in freezer
+rack.
+17. Incubate tubes in freezer rack for 5 minutes
+18. Centrifuge tubes for 8 min at 12,000 rpm
+19. Transfer 600 uL supernatant to lilac spin column
+20. Centrifuge lilac spin columns for 8 min at 12,000 rpm
+21. Open all 1.5 mL microfuge tubes in row B and all white spin columns in row C
+22. Transfer 500 uL of flow through to 1.5 mL microfuge tube avoiding disturbing the pellet
+23. Add 750 uL reagent 4 to liquid in tube and mix immediately using pipette tip
+24. Using same tip transfer ~600 uL mixture to lilac spin column and close it
+25. Repeat 19, 20, and 21 for each sample
+26. Centrifuge white spin columns for 4 minutes at 12,000 rpm
+27. Discard flow through and repeat until all of the mixture has gone through the white spin
+column
+28. Transfer spin basket to empty waste tube
+29. Add 500 uL reagent 5 to each spin column
+30. Centrifuge white spin column for 4 min at 12,000 rpm
+2
+
+31. Discard flow through and repeat steps 28 and 29
+32. Transfer spin basket to empty 1.5 mL tubes
+33. Add 50 uL reagant 6 directly on membrane of spin basket
+34. Incubate at room temperature for 5 minutes
+35. Centrifuge tubes at 12,000 rpm for 5 minutes with foam blocks on top of tube lids to
+prevent breakage
+36. Repeat steps 32, 33, and 34
+37. Close tube and use NanoDrop to quantify DNA and assess purity
+38. Place tubes in labeled rack in -20 freezer
+39. Clean beads
+40. Clean counter with bleach and ethanol
+
+
+# How To Run A Gel
+
+**By Michael Wojahn**
+
+**2014, Revised 2019**
+
+*Use this protocol to visualize DNA quantities and lengths.*
+
+Get out bleach, ethanol, paper towels, tube racks, your DNA, a gel dock, the gel dock power supply, DNA ladder, loading dye, parafilm, pipettor, tips, tip container, vortex, magic marker, a cooled gel with appropriately-sized holes, extra TAE solution if the docks are low, a gel dock, a power station.
+
+1.	Clean the counter with bleach and ethanol. Wipe with a paper towel.
+2.	Melt your DNA on the counter if it is frozen.
+3.	Make sure the gel dock is not plugged in to the power station.
+4.	Open the gel dock lid and gently place the solid gel in there with the wells nearest the black (-) electrode.  If the TAE does not cover the gel and fill its wells, add more TAE.
+5.	Cut a strip of parafilm big enough for all your samples to fit comfortably on it and place it on the counter.  You can tape it down if you like.
+6.	Using either a single-channel or multichannel pipettor, add 5 L of loading dye on the parafilm so that it forms a little bead.
+7.	Carefully open your DNA tube(s)/uncover the PCR plate.
+8.	Using new tip(s), suck up 2 L of DNA from your tube(s).  You can change the volume of DNA used if you do so desire, oftentimes you want 1 g of DNA in each well.
+9.	Touch the mouth(s) of the tip(s) to the bead(s) and gently mix by pipetting up and down.
+10.	Carefully insert the mouth(s) of the tip(s) into the well(s) in the gel.  I find it easiest to use mymiddle finger to stabilize the pipettor.  Remember that if you are using a multichannel pipettor that you must alternate wells each time you pipette new samples (XXXXXXXXXXXXXXXX to 1X1X1X1X1X1X1X1X to 1212121212121212)
+11.	Press pipettor to first stop.  Most of the DNA/loading dye mix should flow to the bottom of the wells.  Press halfway to the second stop if you think you can get more out without producing bubbles.  Bubbles are bad because they can force your DNA/loading dye mix to the top of the well where it can be lost or contaminate other wells.
+12.	Slowly remove pipettor and tip(s) from the well(s) and dispose of used tips in the bucket.
+13.	Once you are done pipetting, place the lid on the gel dock.
+14.	Plug the gel dock into the power station.
+15.	Turn on the power station and set it to 7.5 V
+16.	Leave the gel running until the tracking line has moved 75% of the way to the end of the gel.
+17.	Turn off power station.
+18.	Remove gel from gel dock.
+19.	Visualize it with the method of your choice, being sure to save the resulting photos in a folder with the date and time.
+20.	Dispose of your gel in the trash if it does not contain ethidium bromide (ours do not contain that chemical)
+21.	Rinse gel mold.
+22.	Cover gel dock
+23.	Throw away parafilm strip.
+24.	Cover and put away your samples.
+25.	Put away the ladder.
+26.	Clean the counter with bleach and ethanol. Wipe with a paper towel.
+27.	Print out and tape a photo of your gel to your lab notebook.
+
+# How to Use a Qubit Fluorometer
+
+**By Michael Wojahn**
+
+**2015, revised 2019**
+
+*Use this protocol to quantify how much DNA you have in a solution.*
+
+Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine, the working liquid, the standards, pipettor, small pipette tips, vortex, magic marker, and tip container are available. 
+
+1.	Sterilize the counter with bleach and ethanol, wiping dry with a paper towel. 
+2.	Take box containing the working solution and the two standards out of the refrigerator. 
+3.	Remove Qubit fluorometer from its box and plug it into the wall. It may be necessary to unplug it and plug it back in again before it turns on. 
+4.	Place open, labeled tubes in a tube rack. (label one S1 for “Standard 1”, one S2 for “Standard 2”, and however many tubes as samples you have with your sample names.
+5.	Vortex Standard 1 and 2 bottles. 
+6.	Add 10 μL of Standard 1 to its corresponding tube. 
+7.	Add 10 μL of Standard 2 to its corresponding tube. 
+8.	Add 190 μL of working solution to each of the standard tubes. 
+9.	Vortex your first sample tube. 
+10.	Add 2μL of yur first sample to its corresponding tube, making sure to close the sample tube once you are done with it. 
+11.	Add 198μL of working solution to your sample’s corresponding tube. Repeat the above three steps for all of your samples. 
+12.	Vortex all of the filled tubes, ensuring their lids are tightly on. 
+13.	Incubate the tubes at room temperature for two minutes. 
+14.	While incubation is occurring, put the Qubit reagents and your original sample tubes back in the fridge.
+15.	Gently stroke the Qubit fluorometer screen to wake the machine if it is sleeping.
+16.	Press "dsDNA". 
+17.	Press "dsDNA High Sensitivity".
+18.	Press "Read Standards".
+19.	Insert tube S1, closing fluorometer lid after insertion. 
+20.	Press "Read Standard 1". 
+21.	Remove S2, insert standard 2 and press "Read Standard 2".
+22.	Press "Read Samples".
+23.	Adjust sample size dial to 2 μL.
+24.	Choose “μg/μL” in the “Output Sample Units” menu.
+25.	Insert your first sample, closing fluorometer lid after insertion. 
+26.	Press "Run".
+27.	Record DNA concentration in your lab notebook.
+28.	Repeat the above five steps for each sample. 
+29.	Once done, discard of used Qubit tubes in the trash (reagents do not require special disposal methods). 
+
+# New Protocol for Non-Coriaceous Leaf Tissue Preparation
+
+**Michael Wojahn and Sven Buerki**
+
+**21 March 2019**
+
+1.	Take out your sample packets and line them up in order
+2.	Label 1.5 mL tubes
+3.	Place open tube in foam holder
+4.	Place tube and holder on scale
+5.	Tare scale
+6.	Use tweezers to pick out a leaf strip from open packet
+7.	Place strip in tube
+8.	Repeat steps 6 and 7 until scale reads 0.05 g
+9.	Seal packet and place in extraction samples bag
+10.	Use large needle’s head to shatter leaf strips into small flecks (~1 to 3 mm)
+11.	Open bead tube
+12.	Pour 3 beads into a spoontula
+13.	Use spoontula to guide the 3 beads into the tube
+14.	Shut tube cap
+15.	Invert tube and bang cap end on counter to dislodge flecks from tube apex and to evenly distribute beads
+16.	Repeat steps 2 to 15 for each sample
+17.	Place samples into TissueLyser
+18.	Run TissueLyser for 60 seconds at 50 osc/sec
+19.	Check tubes to see if their contents are pulverized, if any tubes are ready take them out to reduce change of tube breakage
+20.	Rebalance remaining tubes
+21.	Repeat steps 18 to 20 until all tube contents are pulverized, if a tube still has large flecks and very little dust after 5 minutes of bead beating, reclassify that one as ‘coriaceous’ and use mortar and pestle to grind tissue
+
+
+# How To Clean Metal Beads
+
+**Michael Wojahn**
+
+**21 March 2019**
+
+1.	Vigorously tap used bead tubes on cap ends until all beads are dislodged from apices
+2.	Empty contents into large beaker
+3.	Repeat for all used tubes
+4.	Place beaker under tap spigot
+5.	Slowly turn on the hot water until it is at ¾ full flow
+6.	Let water run until all leaf bits/goop float out of beaker (~2 minutes)
+7.	Turn off water
+8.	Slowly pour out water without losing beads (you can use a sieve if you want)
+9.	Add bleach solution until beads are covered
+10.	Swirl beads
+11.	Let beads sit for 30 seconds in the bleach solution
+12.	Place beaker under tap spigot
+13.	Slowly turn on the hot water until it is at ¾ full flow
+14.	Let water run for 30 seconds
+15.	Slowly pour out water without losing beads
+16.	Add ethanol to beads until they are covered
+17.	Swirl beads
+18.	Slowly pour out water without losing beads (you can use a sieve if you want)
+19.	Place clean beads in beaker on a shelf to dry out (the sun makes them dry out faster, you could also use the hot plate if you’re in a hurry, but be careful to not start a fire)
+20.	Once beads are dry, tap beaker to dislodge beads from bottom if they are stuck and then pour them into the bead tube
+
+
+# Protocol for Submitting Unpurified PCR Products for Sanger Sequencing to GenWiz
+
+**Michael Wojahn**
+
+**29 May 2019**
+
+## Preparing submission form
+
+* Go to https://clims4.genewiz.com/CustomerHome/Index and log in:
+
+	    username:	 buerkilab@gmail.com
+	
+	    password:	 ***********
+	
+* Click ‘Sanger” tab.
+* Click “PCR Product- Unpurified”.
+* Click “Custom” under Service Type.
+* Click “Same Day” under Service Priority.
+* Upload LABELED gel image (jpeg).
+* Input number of samples and hit “Apply”, this creates the rows in the online spreadsheet tool.
+* Create an Order Name.
+* Add Special ID if needed by the university for accounting purposes.
+* Use the online spreadsheet tool to input sample info, there are shortcuts in the column names to autofill stuff sequentially or fill all rows with the same content.
+* Press “Save and Review”.
+* Press “Add to Cart”.
+
+## Physical submission guidelines
+
+* Make sure the samples are in semi-skirted 96-well plates (or securely taped to a wellplate).
+* Add 10uL undiluted PCR product to each tube.
+* Include primer tubes (diluted to 5uM) with 5uL*NumSamples in them.
+* Ship the samples overnight using FedEx (use the website to get label):
+* https://www.boisestate.edu/biology/about/department-forms/fedex-label-request/
+* And use funding source number 247742735, it is GeneWiz’s own one (they pay shipping)
+
+  **GENEWIZ
+115 Corporate Blvd**
+    
+  **South Plainfield, NJ 07080**
+    
+  **USA**
+    
+  **908-222-0711**

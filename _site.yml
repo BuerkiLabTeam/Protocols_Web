@@ -1,21 +1,15 @@
-name: "G2PMineR"
+name: "Protocols"
 output_dir: "."
 navbar:
-  title: "G2PMineR"
+  title: "Protocols"
   left:
     - text: "Home"
       href: index.html
-    - text: "Reproducible Pipeline"
-      href: ReproducibleCode.html
-    - text: "Vignette Figures"
-      href: Figures.html
-    - text: "Vignette Objects"
-      href: Tables.html
-    - text: "Function Lexicon"
-      href: Lexicon.html
-    - text: "References"
-      href: References.html
-    - text: "Funding"
-      href: Funding.html
+    - text: "Laboratory Protocols"
+      href: LaboratoryProtocols.html
+    - text: "Field Protocols"
+      href: FieldProtocols.html
+    - text: "ComputationalProtocols"
+      href: ComputationalProtocols.html
     - text: "License"
       href: License.html

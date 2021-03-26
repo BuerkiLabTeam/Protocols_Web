@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2021-03-26" />
+
+<title>Laboratory Protocols</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Protocols</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="LaboratoryProtocols.html">Laboratory Protocols</a>
+</li>
+<li>
+  <a href="FieldProtocols.html">Field Protocols</a>
+</li>
+<li>
+  <a href="ComputationalProtocols.html">ComputationalProtocols</a>
+</li>
+<li>
+  <a href="License.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Laboratory Protocols</h1>
+<h4 class="date">2021-03-26</h4>
+
+</div>
+
+
+<div id="extraction-protocol-for-tropical-and-temperate-plant-leaf-tissue" class="section level1">
+<h1><span class="header-section-number">1</span> Extraction Protocol For Tropical and Temperate Plant Leaf Tissue</h1>
+<p><strong>Michael Wojahn, Sven Buerki</strong></p>
+<p><strong>2018</strong></p>
+<div id="materials" class="section level2">
+<h2><span class="header-section-number">1.1</span> Materials:</h2>
+<ul>
+<li>Qiagen Plant Mini Kit</li>
+<li>Vortex mixer</li>
+<li>1.5 mL Conical Microfuge Tubes</li>
+<li>2mL Globe Scientific Round-Bottomed Tubes</li>
+<li>P1000 and tips</li>
+<li>P200 and tips</li>
+<li>P10 and tips</li>
+<li>Reagent Ethanol</li>
+<li>Cleaning Ethanol</li>
+<li>Cleaning Bleach</li>
+<li>Scale</li>
+<li>Weigh Boat</li>
+<li>Tweezers</li>
+<li>Scissors</li>
+<li>Kimwipes</li>
+<li>Tube Rack</li>
+<li>5mm Titanium Beads</li>
+<li>TissueLyser</li>
+<li>Oscillating Dry Bath</li>
+<li>Microfuge</li>
+<li>Freezer Block Rack</li>
+<li>Foam Microfuge Filler Blocks</li>
+<li>Spoontula</li>
+</ul>
+</div>
+<div id="reagent-key" class="section level2">
+<h2><span class="header-section-number">1.2</span> Reagent Key:</h2>
+<ul>
+<li>Reagent 1 = AP1</li>
+<li>Reagent 2 = RNAse</li>
+<li>Reagent 3 = P3</li>
+<li>Reagent 4 = AW1</li>
+<li>Reagent 5 = AW2</li>
+<li>Reagent 6 = AE</li>
+</ul>
+</div>
+<div id="steps" class="section level2">
+<h2><span class="header-section-number">1.3</span> Steps:</h2>
+<ol style="list-style-type: decimal">
+<li><p>Clean counter with bleach and ethanol</p></li>
+<li><p>Add reagent ethanol to Qiagen reagents 4 and 5 according to their caps if not done
+already</p></li>
+<li><p>Place tubes in rack thusly:</p>
+<ol style="list-style-type: lower-alpha">
+<li>2 mL round-bottomed tube</li>
+<li>Lavender spin column</li>
+<li>1.5 mL microfuge tube</li>
+<li>White spin column</li>
+<li>Empty waste tube</li>
+<li>1.5 mL microfuge tube</li>
+</ol></li>
+<li><p>Label tubes with IDs</p></li>
+<li><p>Preheat oscillating dry bath to 65 degrees C and max oscillations. Take off plastic lid by
+sliding it backwards</p></li>
+<li><p>Place 3 beads in round-bottomed tube</p></li>
+<li><p>Shake loose silica from sample packet</p></li>
+<li><p>Using tweezers take out leaf strips and weigh out 0.5 g using weigh boat and scale.
+Never use up all the sample, always leave at least a little material.</p></li>
+<li><p>Using tweezers, hold each leaf strip over open round-bottomed tube and cut into thin bits
+using scissors. Do not add sand</p></li>
+<li><p>Close tube and place in TissueLyser. Close lid very tightly and turn the unit on. Beat for
+3 min at setting 50</p></li>
+<li><p>Check that all samples have become powder, if any have not beat them again at 1 min
+intervals until they become powder</p></li>
+<li><p>Check that there are no cracks in the round-bottomed tubes, if there are any transfer the
+powder and beads to a fresh tube. If you want to be safe you can do this for all tubes</p></li>
+<li><p>Add 800 uL reagent 1 and 5 uL RNAse to round-bottomed tubes and place in oscillating
+dry bath for 30 min.</p></li>
+<li><p>Take tubes out of oscillating dry bath and place in room temperature rack</p></li>
+<li><p>Take freezer block rack out of -20 freezer and place behind your tube rack</p></li>
+<li><p>Add 130 uL of reagent 3 to each tube, vortex, and immediately place tube in freezer
+rack.</p></li>
+<li><p>Incubate tubes in freezer rack for 5 minutes</p></li>
+<li><p>Centrifuge tubes for 8 min at 12,000 rpm</p></li>
+<li><p>Transfer 600 uL supernatant to lilac spin column</p></li>
+<li><p>Centrifuge lilac spin columns for 8 min at 12,000 rpm</p></li>
+<li><p>Open all 1.5 mL microfuge tubes in row B and all white spin columns in row C</p></li>
+<li><p>Transfer 500 uL of flow through to 1.5 mL microfuge tube avoiding disturbing the pellet</p></li>
+<li><p>Add 750 uL reagent 4 to liquid in tube and mix immediately using pipette tip</p></li>
+<li><p>Using same tip transfer ~600 uL mixture to lilac spin column and close it</p></li>
+<li><p>Repeat 19, 20, and 21 for each sample</p></li>
+<li><p>Centrifuge white spin columns for 4 minutes at 12,000 rpm</p></li>
+<li><p>Discard flow through and repeat until all of the mixture has gone through the white spin
+column</p></li>
+<li><p>Transfer spin basket to empty waste tube</p></li>
+<li><p>Add 500 uL reagent 5 to each spin column</p></li>
+<li><p>Centrifuge white spin column for 4 min at 12,000 rpm
+2</p></li>
+<li><p>Discard flow through and repeat steps 28 and 29</p></li>
+<li><p>Transfer spin basket to empty 1.5 mL tubes</p></li>
+<li><p>Add 50 uL reagant 6 directly on membrane of spin basket</p></li>
+<li><p>Incubate at room temperature for 5 minutes</p></li>
+<li><p>Centrifuge tubes at 12,000 rpm for 5 minutes with foam blocks on top of tube lids to
+prevent breakage</p></li>
+<li><p>Repeat steps 32, 33, and 34</p></li>
+<li><p>Close tube and use NanoDrop to quantify DNA and assess purity</p></li>
+<li><p>Place tubes in labeled rack in -20 freezer</p></li>
+<li><p>Clean beads</p></li>
+<li><p>Clean counter with bleach and ethanol</p></li>
+</ol>
+</div>
+</div>
+<div id="how-to-run-a-gel" class="section level1">
+<h1><span class="header-section-number">2</span> How To Run A Gel</h1>
+<p><strong>By Michael Wojahn</strong></p>
+<p><strong>2014, Revised 2019</strong></p>
+<p><em>Use this protocol to visualize DNA quantities and lengths.</em></p>
+<p>Get out bleach, ethanol, paper towels, tube racks, your DNA, a gel dock, the gel dock power supply, DNA ladder, loading dye, parafilm, pipettor, tips, tip container, vortex, magic marker, a cooled gel with appropriately-sized holes, extra TAE solution if the docks are low, a gel dock, a power station.</p>
+<ol style="list-style-type: decimal">
+<li>Clean the counter with bleach and ethanol. Wipe with a paper towel.</li>
+<li>Melt your DNA on the counter if it is frozen.</li>
+<li>Make sure the gel dock is not plugged in to the power station.</li>
+<li>Open the gel dock lid and gently place the solid gel in there with the wells nearest the black (-) electrode. If the TAE does not cover the gel and fill its wells, add more TAE.</li>
+<li>Cut a strip of parafilm big enough for all your samples to fit comfortably on it and place it on the counter. You can tape it down if you like.</li>
+<li>Using either a single-channel or multichannel pipettor, add 5 L of loading dye on the parafilm so that it forms a little bead.</li>
+<li>Carefully open your DNA tube(s)/uncover the PCR plate.</li>
+<li>Using new tip(s), suck up 2 L of DNA from your tube(s). You can change the volume of DNA used if you do so desire, oftentimes you want 1 g of DNA in each well.</li>
+<li>Touch the mouth(s) of the tip(s) to the bead(s) and gently mix by pipetting up and down.</li>
+<li>Carefully insert the mouth(s) of the tip(s) into the well(s) in the gel. I find it easiest to use mymiddle finger to stabilize the pipettor. Remember that if you are using a multichannel pipettor that you must alternate wells each time you pipette new samples (XXXXXXXXXXXXXXXX to 1X1X1X1X1X1X1X1X to 1212121212121212)</li>
+<li>Press pipettor to first stop. Most of the DNA/loading dye mix should flow to the bottom of the wells. Press halfway to the second stop if you think you can get more out without producing bubbles. Bubbles are bad because they can force your DNA/loading dye mix to the top of the well where it can be lost or contaminate other wells.</li>
+<li>Slowly remove pipettor and tip(s) from the well(s) and dispose of used tips in the bucket.</li>
+<li>Once you are done pipetting, place the lid on the gel dock.</li>
+<li>Plug the gel dock into the power station.</li>
+<li>Turn on the power station and set it to 7.5 V</li>
+<li>Leave the gel running until the tracking line has moved 75% of the way to the end of the gel.</li>
+<li>Turn off power station.</li>
+<li>Remove gel from gel dock.</li>
+<li>Visualize it with the method of your choice, being sure to save the resulting photos in a folder with the date and time.</li>
+<li>Dispose of your gel in the trash if it does not contain ethidium bromide (ours do not contain that chemical)</li>
+<li>Rinse gel mold.</li>
+<li>Cover gel dock</li>
+<li>Throw away parafilm strip.</li>
+<li>Cover and put away your samples.</li>
+<li>Put away the ladder.</li>
+<li>Clean the counter with bleach and ethanol. Wipe with a paper towel.</li>
+<li>Print out and tape a photo of your gel to your lab notebook.</li>
+</ol>
+</div>
+<div id="how-to-use-a-qubit-fluorometer" class="section level1">
+<h1><span class="header-section-number">3</span> How to Use a Qubit Fluorometer</h1>
+<p><strong>By Michael Wojahn</strong></p>
+<p><strong>2015, revised 2019</strong></p>
+<p><em>Use this protocol to quantify how much DNA you have in a solution.</em></p>
+<p>Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine, the working liquid, the standards, pipettor, small pipette tips, vortex, magic marker, and tip container are available.</p>
+<ol style="list-style-type: decimal">
+<li>Sterilize the counter with bleach and ethanol, wiping dry with a paper towel.</li>
+<li>Take box containing the working solution and the two standards out of the refrigerator.</li>
+<li>Remove Qubit fluorometer from its box and plug it into the wall. It may be necessary to unplug it and plug it back in again before it turns on.</li>
+<li>Place open, labeled tubes in a tube rack. (label one S1 for “Standard 1”, one S2 for “Standard 2”, and however many tubes as samples you have with your sample names.</li>
+<li>Vortex Standard 1 and 2 bottles.</li>
+<li>Add 10 μL of Standard 1 to its corresponding tube.</li>
+<li>Add 10 μL of Standard 2 to its corresponding tube.</li>
+<li>Add 190 μL of working solution to each of the standard tubes.</li>
+<li>Vortex your first sample tube.</li>
+<li>Add 2μL of yur first sample to its corresponding tube, making sure to close the sample tube once you are done with it.</li>
+<li>Add 198μL of working solution to your sample’s corresponding tube. Repeat the above three steps for all of your samples.</li>
+<li>Vortex all of the filled tubes, ensuring their lids are tightly on.</li>
+<li>Incubate the tubes at room temperature for two minutes.</li>
+<li>While incubation is occurring, put the Qubit reagents and your original sample tubes back in the fridge.</li>
+<li>Gently stroke the Qubit fluorometer screen to wake the machine if it is sleeping.</li>
+<li>Press “dsDNA”.</li>
+<li>Press “dsDNA High Sensitivity”.</li>
+<li>Press “Read Standards”.</li>
+<li>Insert tube S1, closing fluorometer lid after insertion.</li>
+<li>Press “Read Standard 1”.</li>
+<li>Remove S2, insert standard 2 and press “Read Standard 2”.</li>
+<li>Press “Read Samples”.</li>
+<li>Adjust sample size dial to 2 μL.</li>
+<li>Choose “μg/μL” in the “Output Sample Units” menu.</li>
+<li>Insert your first sample, closing fluorometer lid after insertion.</li>
+<li>Press “Run”.</li>
+<li>Record DNA concentration in your lab notebook.</li>
+<li>Repeat the above five steps for each sample.</li>
+<li>Once done, discard of used Qubit tubes in the trash (reagents do not require special disposal methods).</li>
+</ol>
+</div>
+<div id="new-protocol-for-non-coriaceous-leaf-tissue-preparation" class="section level1">
+<h1><span class="header-section-number">4</span> New Protocol for Non-Coriaceous Leaf Tissue Preparation</h1>
+<p><strong>Michael Wojahn and Sven Buerki</strong></p>
+<p><strong>21 March 2019</strong></p>
+<ol style="list-style-type: decimal">
+<li>Take out your sample packets and line them up in order</li>
+<li>Label 1.5 mL tubes</li>
+<li>Place open tube in foam holder</li>
+<li>Place tube and holder on scale</li>
+<li>Tare scale</li>
+<li>Use tweezers to pick out a leaf strip from open packet</li>
+<li>Place strip in tube</li>
+<li>Repeat steps 6 and 7 until scale reads 0.05 g</li>
+<li>Seal packet and place in extraction samples bag</li>
+<li>Use large needle’s head to shatter leaf strips into small flecks (~1 to 3 mm)</li>
+<li>Open bead tube</li>
+<li>Pour 3 beads into a spoontula</li>
+<li>Use spoontula to guide the 3 beads into the tube</li>
+<li>Shut tube cap</li>
+<li>Invert tube and bang cap end on counter to dislodge flecks from tube apex and to evenly distribute beads</li>
+<li>Repeat steps 2 to 15 for each sample</li>
+<li>Place samples into TissueLyser</li>
+<li>Run TissueLyser for 60 seconds at 50 osc/sec</li>
+<li>Check tubes to see if their contents are pulverized, if any tubes are ready take them out to reduce change of tube breakage</li>
+<li>Rebalance remaining tubes</li>
+<li>Repeat steps 18 to 20 until all tube contents are pulverized, if a tube still has large flecks and very little dust after 5 minutes of bead beating, reclassify that one as ‘coriaceous’ and use mortar and pestle to grind tissue</li>
+</ol>
+</div>
+<div id="how-to-clean-metal-beads" class="section level1">
+<h1><span class="header-section-number">5</span> How To Clean Metal Beads</h1>
+<p><strong>Michael Wojahn</strong></p>
+<p><strong>21 March 2019</strong></p>
+<ol style="list-style-type: decimal">
+<li>Vigorously tap used bead tubes on cap ends until all beads are dislodged from apices</li>
+<li>Empty contents into large beaker</li>
+<li>Repeat for all used tubes</li>
+<li>Place beaker under tap spigot</li>
+<li>Slowly turn on the hot water until it is at ¾ full flow</li>
+<li>Let water run until all leaf bits/goop float out of beaker (~2 minutes)</li>
+<li>Turn off water</li>
+<li>Slowly pour out water without losing beads (you can use a sieve if you want)</li>
+<li>Add bleach solution until beads are covered</li>
+<li>Swirl beads</li>
+<li>Let beads sit for 30 seconds in the bleach solution</li>
+<li>Place beaker under tap spigot</li>
+<li>Slowly turn on the hot water until it is at ¾ full flow</li>
+<li>Let water run for 30 seconds</li>
+<li>Slowly pour out water without losing beads</li>
+<li>Add ethanol to beads until they are covered</li>
+<li>Swirl beads</li>
+<li>Slowly pour out water without losing beads (you can use a sieve if you want)</li>
+<li>Place clean beads in beaker on a shelf to dry out (the sun makes them dry out faster, you could also use the hot plate if you’re in a hurry, but be careful to not start a fire)</li>
+<li>Once beads are dry, tap beaker to dislodge beads from bottom if they are stuck and then pour them into the bead tube</li>
+</ol>
+</div>
+<div id="protocol-for-submitting-unpurified-pcr-products-for-sanger-sequencing-to-genwiz" class="section level1">
+<h1><span class="header-section-number">6</span> Protocol for Submitting Unpurified PCR Products for Sanger Sequencing to GenWiz</h1>
+<p><strong>Michael Wojahn</strong></p>
+<p><strong>29 May 2019</strong></p>
+<div id="preparing-submission-form" class="section level2">
+<h2><span class="header-section-number">6.1</span> Preparing submission form</h2>
+<ul>
+<li><p>Go to <a href="https://clims4.genewiz.com/CustomerHome/Index" class="uri">https://clims4.genewiz.com/CustomerHome/Index</a> and log in:</p>
+<pre><code>  username:    buerkilab@gmail.com
+
+  password:    ***********</code></pre></li>
+<li><p>Click ‘Sanger” tab.</p></li>
+<li><p>Click “PCR Product- Unpurified”.</p></li>
+<li><p>Click “Custom” under Service Type.</p></li>
+<li><p>Click “Same Day” under Service Priority.</p></li>
+<li><p>Upload LABELED gel image (jpeg).</p></li>
+<li><p>Input number of samples and hit “Apply”, this creates the rows in the online spreadsheet tool.</p></li>
+<li><p>Create an Order Name.</p></li>
+<li><p>Add Special ID if needed by the university for accounting purposes.</p></li>
+<li><p>Use the online spreadsheet tool to input sample info, there are shortcuts in the column names to autofill stuff sequentially or fill all rows with the same content.</p></li>
+<li><p>Press “Save and Review”.</p></li>
+<li><p>Press “Add to Cart”.</p></li>
+</ul>
+</div>
+<div id="physical-submission-guidelines" class="section level2">
+<h2><span class="header-section-number">6.2</span> Physical submission guidelines</h2>
+<ul>
+<li><p>Make sure the samples are in semi-skirted 96-well plates (or securely taped to a wellplate).</p></li>
+<li><p>Add 10uL undiluted PCR product to each tube.</p></li>
+<li><p>Include primer tubes (diluted to 5uM) with 5uL*NumSamples in them.</p></li>
+<li><p>Ship the samples overnight using FedEx (use the website to get label):</p></li>
+<li><p><a href="https://www.boisestate.edu/biology/about/department-forms/fedex-label-request/" class="uri">https://www.boisestate.edu/biology/about/department-forms/fedex-label-request/</a></p></li>
+<li><p>And use funding source number 247742735, it is GeneWiz’s own one (they pay shipping)</p>
+<p><strong>GENEWIZ
+115 Corporate Blvd</strong></p>
+<p><strong>South Plainfield, NJ 07080</strong></p>
+<p><strong>USA</strong></p>
+<p><strong>908-222-0711</strong></p></li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

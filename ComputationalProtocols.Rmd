@@ -1,0 +1,217 @@
+---
+title: "Computational Protocols"
+date: "`r Sys.Date()`"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: flatly
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Measuring Leaves With Fiji
+
+**Michael Wojahn**
+
+**10/24/2018**
+
+**Note on nomenclature**
+This protocol can be usedboth on simple and compound leaves.  If using on compound leaves, substitute "leaflet" for "leaf".
+
+**Installation of Fiji**
+
+Install Fiji.
+
+```{bash, eval = F}
+https://imagej.net/Fiji/Downloads
+```
+
+1. Open image using Fiji (rgt click > open > other > fiji).
+
+2. Assign numbers to mature, intact leaves (they must have their bases visible, visible and uneaten tips, and must not be folded in half).  Do this by clicking on the paintbrush button and 'painting' the number next to the leaf.  If there is only one 'good' leaf available, choose it.
+
+3. Use a random number generator to choose a random leaf from among them. I used RandomNumberGenerator.c.  Input your upper bound, desired number of numbers, and a seed and then run the program in CodeRunner or a similar environment. Or use a pseudorandom online generator.
+
+4. Click on "Straight" button in ImageJ window.
+
+5. Zoom in using UP arrow, center of zoom is the location of your mouse.
+
+6. Draw a line between two cm marks on the included scale bar.
+
+7. Calibrate measurements (Analyze > Set Scale > "1" in 2nd box down).
+
+8. Measure blade base at point of petiole insertion. Enter value into column **BB**.
+
+9. Measure the length of the blade ("cmd M", measurements are in separate window).  When measuring this,  if the leaf is curved measure from the base of the leaf to the apex of the tip, even if this means that the measuring line is not centered on the primary nerve.  If the tip is missing (and there are no other suitable leaves) estimate where the tip would end based on other leaves in the picture. Enter value into column **LB**.
+
+10. Draw the length of the blade ("cmd D", produces a white dashed line)
+
+11. Width at half blade length. If a leaf has part of its blade eaten at the point where you are measuring and there are no suitable alternative leaves: (i) if the leaf is symmetrical, bring the halfway dot of the measuring line to the primary nerve (ii) if the leaf is asymmetrical, observe the curvature of the leaf and estimate where the leaf edge would be and bring the far end of the measuring line there.  This can be helped by observing other leaves in the photo.  Enter value into column **W50**.
+
+12. Blade apex width at about three-quarters length.  Enter value into column  **W75**.
+
+13. Blade apex width at about one-quarter length.  Enter value into column  **W25**.
+
+14. Petiole angle of insertion: press the "Angle" button on the toolbar and then click where you want one of the arms of the angle to begin.  Draw to the vertex and click.  Then drag the second arm to the proper place and click again.  then hit "cmd M". Enter value (second cell from the right) into column **Angle**.
+
+15. Save the altered image. **(shift > "cmd S")**
+
+16. Click in measurements pane and delete data therein **("cmd A" > "cmd X")**
+
+17. Open next image **(shift > "cmd O")**
+
+Repeat steps 1-17 for each image.
+
+# How to Use mPTP
+
+**Michael Wojahn**
+
+**October 2019**
+
+
+## SSH Ubuntu Method
+
+1.	Open FileZilla
+2.	Fill out Host, Username, and Password and press “Quickconnect”
+3.	Create a directory in destination machine folder Documents named mptp
+4.	Create a directory within mptp named mptp_mygene
+5.	Drag and drop your RAxML BestTree into mptp_mygene
+6.	Use bash to access a remote Ubuntu machine
+ ssh janedoe@123.123.123.123
+7.	Enter your password
+8.	Accept any messages prompting you about unknown ip addresses
+9.	Use the template below to run mPTP, replace the green arguments with your #arguments:
+
+```{bash, eval = F}
+mptp --tree_file InsertRAxMLTreeNameHere --output_file            mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 --mcmc_startml --mcmc_runs 2 --mcmc_log
+```
+
+## Personal Ubuntu Method
+
+1.	Install Python3
+```{bash, eval = F}
+brew install python3
+```
+2.	Upgrade pip3
+```{bash, eval = F}
+pip3 install --upgrade pip
+```
+3.	Change direct to PTP-master
+```{bash, eval = F}
+cd ~/PTP-master
+```
+4.	Install PTP requirements
+```{bash, eval = F}
+pip3 install -r  ~/PTP-master/requirements.txt
+```
+5.	Initialize PTP
+```{bash, eval = F}
+python3 ~/PTP-master/setup.py install
+```
+6.	Use the template below to run mPTP, replace the green arguments with your #arguments:
+
+```{bash, eval = F}
+mptp --tree_file InsertRAxMLTreeNameHere --output_file mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 
+```
+
+# How to make an R project that links up to GitHub
+
+1. Make a new R project in a new directory and click Create Git repository
+2. Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. Copy the URL that ends in “git” that appears.
+3. Go to the Git tab and click on the gearwheel. Select Shell.
+4. Add your url to the below code, then paste it into the terminal window that popped up. This may produce a warning, that is ok.
+```{bash, eval = F}
+git remote add origin https://github.com/wojahn/MyProject.git
+```
+5. Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
+message, and then hit Commit.
+6. Now push to fill the empty GitHub repository by pasting the below code:
+```{bash, eval = F}
+git push -u origin master
+```
+7. Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.
+
+# How to fork your public repository to the lab's
+
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+3. Search for your account’s name in the search bar
+4. Click on 'Repositories'
+5. Click on the public repository you want to fork
+6. Click on 'Fork' (top left)
+7. Choose "BuerkiLab"
+8. Log out of the lab’s GitHub account
+
+# How to fork your private repository to the lab's
+
+1. Go to your homepage
+2. Click on 'Repositories'
+3. Click on your repository name
+4. Click on 'Settings'
+5. Click on 'Manage Access'
+6. Click on 'Invite Collabortator'
+7. Search for “BuerkiLab” and click on the match
+8. Click on 'Add BuerkiLab to this repository'
+9. Log out of your GitHub account
+10. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+11. Paste this into browser:
+```{bash, eval = F}
+https://github.com/myname/myprivaterepo/invitations
+```
+where myname is your GitHub handle and myprivaterepo is the name of your private repository
+12. Click on Accept invitation
+13. Click on Fork (top left)
+14. Choose BuerkiLab
+15. Log out of the lab’s GitHub account
+
+# How to merge your rempository into the lab's
+
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+3. click on 'Repositories'
+4. Click on the repository you want to merge
+5. Click on 'Compare'
+6. Scroll down a few inches and click on 'switching the base'
+7. Click on 'Create Pull Request'
+8. Write message and click on 'Create Pull Request' again
+9. Click on View Pull Request
+10. Click on Merge Pull Request
+11. Click on Confirm Merge
+12. Log out of the lab's GitHub account
+
+
+# Processing seedling images for machine learning
+
+**By Michael Wojahn and Sven Buerki**
+
+1. Download image from GoogleDrive
+2. Open image in Preview
+3. Drag mouse pointer to select rectangular area that encloses as much of the
+seedling as possible while excluding post-it notes and rulers
+4. Press ⌘K to crop
+5. Press alt⌘C to open color preferences tool
+6. Press “auto levels”
+7. Save image and add “_crop” to end of filename (but before extension)
+8. Reupload cropped image to a new folder on GoogleDrive
+

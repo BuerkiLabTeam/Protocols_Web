@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2021-03-26" />
+
+<title>Computational Protocols</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Protocols</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="LaboratoryProtocols.html">Laboratory Protocols</a>
+</li>
+<li>
+  <a href="FieldProtocols.html">Field Protocols</a>
+</li>
+<li>
+  <a href="ComputationalProtocols.html">ComputationalProtocols</a>
+</li>
+<li>
+  <a href="License.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Computational Protocols</h1>
+<h4 class="date">2021-03-26</h4>
+
+</div>
+
+
+<div id="measuring-leaves-with-fiji" class="section level1">
+<h1><span class="header-section-number">1</span> Measuring Leaves With Fiji</h1>
+<p><strong>Michael Wojahn</strong></p>
+<p><strong>10/24/2018</strong></p>
+<p><strong>Note on nomenclature</strong>
+This protocol can be usedboth on simple and compound leaves. If using on compound leaves, substitute “leaflet” for “leaf”.</p>
+<p><strong>Installation of Fiji</strong></p>
+<p>Install Fiji.</p>
+<pre class="bash"><code>https://imagej.net/Fiji/Downloads</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Open image using Fiji (rgt click &gt; open &gt; other &gt; fiji).</p></li>
+<li><p>Assign numbers to mature, intact leaves (they must have their bases visible, visible and uneaten tips, and must not be folded in half). Do this by clicking on the paintbrush button and ‘painting’ the number next to the leaf. If there is only one ‘good’ leaf available, choose it.</p></li>
+<li><p>Use a random number generator to choose a random leaf from among them. I used RandomNumberGenerator.c. Input your upper bound, desired number of numbers, and a seed and then run the program in CodeRunner or a similar environment. Or use a pseudorandom online generator.</p></li>
+<li><p>Click on “Straight” button in ImageJ window.</p></li>
+<li><p>Zoom in using UP arrow, center of zoom is the location of your mouse.</p></li>
+<li><p>Draw a line between two cm marks on the included scale bar.</p></li>
+<li><p>Calibrate measurements (Analyze &gt; Set Scale &gt; “1” in 2nd box down).</p></li>
+<li><p>Measure blade base at point of petiole insertion. Enter value into column <strong>BB</strong>.</p></li>
+<li><p>Measure the length of the blade (“cmd M”, measurements are in separate window). When measuring this, if the leaf is curved measure from the base of the leaf to the apex of the tip, even if this means that the measuring line is not centered on the primary nerve. If the tip is missing (and there are no other suitable leaves) estimate where the tip would end based on other leaves in the picture. Enter value into column <strong>LB</strong>.</p></li>
+<li><p>Draw the length of the blade (“cmd D”, produces a white dashed line)</p></li>
+<li><p>Width at half blade length. If a leaf has part of its blade eaten at the point where you are measuring and there are no suitable alternative leaves: (i) if the leaf is symmetrical, bring the halfway dot of the measuring line to the primary nerve (ii) if the leaf is asymmetrical, observe the curvature of the leaf and estimate where the leaf edge would be and bring the far end of the measuring line there. This can be helped by observing other leaves in the photo. Enter value into column <strong>W50</strong>.</p></li>
+<li><p>Blade apex width at about three-quarters length. Enter value into column <strong>W75</strong>.</p></li>
+<li><p>Blade apex width at about one-quarter length. Enter value into column <strong>W25</strong>.</p></li>
+<li><p>Petiole angle of insertion: press the “Angle” button on the toolbar and then click where you want one of the arms of the angle to begin. Draw to the vertex and click. Then drag the second arm to the proper place and click again. then hit “cmd M”. Enter value (second cell from the right) into column <strong>Angle</strong>.</p></li>
+<li><p>Save the altered image. <strong>(shift &gt; “cmd S”)</strong></p></li>
+<li><p>Click in measurements pane and delete data therein <strong>(“cmd A” &gt; “cmd X”)</strong></p></li>
+<li><p>Open next image <strong>(shift &gt; “cmd O”)</strong></p></li>
+</ol>
+<p>Repeat steps 1-17 for each image.</p>
+</div>
+<div id="how-to-use-mptp" class="section level1">
+<h1><span class="header-section-number">2</span> How to Use mPTP</h1>
+<p><strong>Michael Wojahn</strong></p>
+<p><strong>October 2019</strong></p>
+<div id="ssh-ubuntu-method" class="section level2">
+<h2><span class="header-section-number">2.1</span> SSH Ubuntu Method</h2>
+<ol style="list-style-type: decimal">
+<li>Open FileZilla</li>
+<li>Fill out Host, Username, and Password and press “Quickconnect”</li>
+<li>Create a directory in destination machine folder Documents named mptp</li>
+<li>Create a directory within mptp named mptp_mygene</li>
+<li>Drag and drop your RAxML BestTree into mptp_mygene</li>
+<li>Use bash to access a remote Ubuntu machine
+ssh <a href="mailto:janedoe@123.123.123.123" class="email">janedoe@123.123.123.123</a></li>
+<li>Enter your password</li>
+<li>Accept any messages prompting you about unknown ip addresses</li>
+<li>Use the template below to run mPTP, replace the green arguments with your #arguments:</li>
+</ol>
+<pre class="bash"><code>mptp --tree_file InsertRAxMLTreeNameHere --output_file            mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 --mcmc_startml --mcmc_runs 2 --mcmc_log</code></pre>
+</div>
+<div id="personal-ubuntu-method" class="section level2">
+<h2><span class="header-section-number">2.2</span> Personal Ubuntu Method</h2>
+<ol style="list-style-type: decimal">
+<li>Install Python3</li>
+</ol>
+<pre class="bash"><code>brew install python3</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Upgrade pip3</li>
+</ol>
+<pre class="bash"><code>pip3 install --upgrade pip</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Change direct to PTP-master</li>
+</ol>
+<pre class="bash"><code>cd ~/PTP-master</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Install PTP requirements</li>
+</ol>
+<pre class="bash"><code>pip3 install -r  ~/PTP-master/requirements.txt</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Initialize PTP</li>
+</ol>
+<pre class="bash"><code>python3 ~/PTP-master/setup.py install</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Use the template below to run mPTP, replace the green arguments with your #arguments:</li>
+</ol>
+<pre class="bash"><code>mptp --tree_file InsertRAxMLTreeNameHere --output_file mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 </code></pre>
+</div>
+</div>
+<div id="how-to-make-an-r-project-that-links-up-to-github" class="section level1">
+<h1><span class="header-section-number">3</span> How to make an R project that links up to GitHub</h1>
+<ol style="list-style-type: decimal">
+<li>Make a new R project in a new directory and click Create Git repository</li>
+<li>Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. Copy the URL that ends in “git” that appears.</li>
+<li>Go to the Git tab and click on the gearwheel. Select Shell.</li>
+<li>Add your url to the below code, then paste it into the terminal window that popped up. This may produce a warning, that is ok.</li>
+</ol>
+<pre class="bash"><code>git remote add origin https://github.com/wojahn/MyProject.git</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
+message, and then hit Commit.</li>
+<li>Now push to fill the empty GitHub repository by pasting the below code:</li>
+</ol>
+<pre class="bash"><code>git push -u origin master</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.</li>
+</ol>
+</div>
+<div id="how-to-fork-your-public-repository-to-the-labs" class="section level1">
+<h1><span class="header-section-number">4</span> How to fork your public repository to the lab’s</h1>
+<ol style="list-style-type: decimal">
+<li>Log out of your GitHub account</li>
+<li>Log into the lab’s GitHub Account</li>
+</ol>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Search for your account’s name in the search bar</li>
+<li>Click on ‘Repositories’</li>
+<li>Click on the public repository you want to fork</li>
+<li>Click on ‘Fork’ (top left)</li>
+<li>Choose “BuerkiLab”</li>
+<li>Log out of the lab’s GitHub account</li>
+</ol>
+</div>
+<div id="how-to-fork-your-private-repository-to-the-labs" class="section level1">
+<h1><span class="header-section-number">5</span> How to fork your private repository to the lab’s</h1>
+<ol style="list-style-type: decimal">
+<li>Go to your homepage</li>
+<li>Click on ‘Repositories’</li>
+<li>Click on your repository name</li>
+<li>Click on ‘Settings’</li>
+<li>Click on ‘Manage Access’</li>
+<li>Click on ‘Invite Collabortator’</li>
+<li>Search for “BuerkiLab” and click on the match</li>
+<li>Click on ‘Add BuerkiLab to this repository’</li>
+<li>Log out of your GitHub account</li>
+<li>Log into the lab’s GitHub Account</li>
+</ol>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Paste this into browser:</li>
+</ol>
+<pre class="bash"><code>https://github.com/myname/myprivaterepo/invitations</code></pre>
+<p>where myname is your GitHub handle and myprivaterepo is the name of your private repository
+12. Click on Accept invitation
+13. Click on Fork (top left)
+14. Choose BuerkiLab
+15. Log out of the lab’s GitHub account</p>
+</div>
+<div id="how-to-merge-your-rempository-into-the-labs" class="section level1">
+<h1><span class="header-section-number">6</span> How to merge your rempository into the lab’s</h1>
+<ol style="list-style-type: decimal">
+<li>Log out of your GitHub account</li>
+<li>Log into the lab’s GitHub Account</li>
+</ol>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>click on ‘Repositories’</li>
+<li>Click on the repository you want to merge</li>
+<li>Click on ‘Compare’</li>
+<li>Scroll down a few inches and click on ‘switching the base’</li>
+<li>Click on ‘Create Pull Request’</li>
+<li>Write message and click on ‘Create Pull Request’ again</li>
+<li>Click on View Pull Request</li>
+<li>Click on Merge Pull Request</li>
+<li>Click on Confirm Merge</li>
+<li>Log out of the lab’s GitHub account</li>
+</ol>
+</div>
+<div id="processing-seedling-images-for-machine-learning" class="section level1">
+<h1><span class="header-section-number">7</span> Processing seedling images for machine learning</h1>
+<p><strong>By Michael Wojahn and Sven Buerki</strong></p>
+<ol style="list-style-type: decimal">
+<li>Download image from GoogleDrive</li>
+<li>Open image in Preview</li>
+<li>Drag mouse pointer to select rectangular area that encloses as much of the
+seedling as possible while excluding post-it notes and rulers</li>
+<li>Press ⌘K to crop</li>
+<li>Press alt⌘C to open color preferences tool</li>
+<li>Press “auto levels”</li>
+<li>Save image and add “_crop” to end of filename (but before extension)</li>
+<li>Reupload cropped image to a new folder on GoogleDrive</li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,8 +1,0 @@
-﻿Section,Module,Databases,Functions,Input,Output,ExternalFunctions
-1,1,none,AbstractsGetteR; AbstractsClusterMakeR; MembershipInvestigatoR; HTMLElementRemoveR; AlphaNumericalizeR,Search query OR user-supplied abstracts and ids,"AbstractsStrings, IDs, NetList, meminv",RISmed::EUtilsSummary
-2,2,SwissGenesCombo; AnimalSwissGenesCombo; FungiSwissGenesCombo;GeneSynonymyKey; AnimalGenesSynonymyKey; FungiGeneSysnonymyKey,GenesLookeR; SynonymReplaceR; UtilityGradeR; GeneNamesGroupeR; GeneFrequencySifteR,AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional),GenesOut; GeneGrades; GeneGroups; SiftedGenes,none
-2,3,TracheophytaSpp; AnimalSpp; FungiSpp,SpeciesLookeR; SpeciesAbbreviatoR,AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional),AbstractsSpp; SpeciesAbbrvs,none
-2,4,MoBotTerms; AnimalTerms; FungiTerms; Webster,PhenotypeLookeR,AbstractsStrings; IDs; Kingdom; CustomDatabase (Optional),AbsPhen,none
-2,5,none,AbstractsProportionCalculator; MatchesBarPlotteR; MakeGenesOutLongform; ConsensusInferreR,AbstractsStrings; IDs; GenesOut; AbstractsSpp; AbsPhen,GenesBarPLot; SppBarPLot; PhenoBarPLot; Genez; Consensus matrices; longform matrices,none
-2,6,none,InternalPairwiseDistanceInferreR; TopN_PickeR_Internal,GenesOut; AbstractsSpp; AbsPhen,GenesNetwork; SppNetwork; PhenoNetwork,qgraph::qgraph
-3,7,none,PairwiseDistanceInferreR; TopN_PickeR,GenesOut; AbstractsSpp; AbsPhen,PhenoSpecies Bipartite; GeneSpecies Bipartite; PhenoGenes Bipartite,bipartite::plotweb

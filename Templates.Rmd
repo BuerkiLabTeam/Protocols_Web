@@ -1,0 +1,32 @@
+---
+title: "Templates"
+date: "`r Sys.Date()`"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: flatly
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+
+## PCR PLate Loading Templates
+
+Print these out and paste them in your notebook when running a PCR
+
+[Click here to download the template in green](https://doi.org/10.6084/m9.figshare.14325620)
+
+[Click here to download the template in black and white](https://doi.org/10.6084/m9.figshare.14325566)
+
+# Scary Mutagen Warning Sign
+
+[Click here to download the scary mutagen warning sign](https://doi.org/10.6084/m9.figshare.14325644)

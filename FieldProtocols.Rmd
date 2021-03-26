@@ -1,0 +1,90 @@
+---
+title: "Field Protocols"
+date: "`r Sys.Date()`"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: flatly
+link-citations: yes
+fontsize: 12pt
+urlcolor: blue
+csl: AmJBot.csl
+bibliography: References.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Setting up botanical plot & marking trees
+
+A botanical plot of 50 m x 50 m will be set up (see Figure 1) and all trees with DBHs >5 cm will be marked and counted.
+
+1. Identify and tag (with red tape) a reference tree representing the far right bottom of the plot.
+2. Delimit a 50 m x 50 m plot by using the 50 m linear tape as well as the compass (to maintain either South/North or West/East direction) (name and tag corner trees: T1-T4).
+3. Plant a yellow flag every 5 m (using pre-labeled flags) to establish a grid of 100 cells (Figure 1).
+4. Flag trees at each corner of the plot with red tape.
+5. Record geographical coordinates of four corners of the plot using the Garmin GPS.
+6. Visit each cell of the plot and mark trees with DBHs with one line (this is important).
+
+# Measuring DBH, height and position of trees within plot
+
+In this step, we will visit each cell of the grid and record the following information for each tree with a DBH >5 cm.
+
+1. Use wood folding ruler to measure DBH of each marked trees in cell.
+2. Assign unique ID to trees as follows: CxTy. C stands for cell and T stands for tree.
+3. Stand in the right bottom corner of the cell (=reference).
+4. Use laser to calculate distances to each tree while staying in right bottom corner of cell.
+5. Report angles to trees using compass. Angles will be between 0 and 90 degrees on the way up of the plot, whereas they will be between 180 and 270 degrees on the way down of the plot.
+6. Measure tree heights using the 2 points method implemented in laser.
+7. Each time a tree has been fully documented, add a second line on the trunk using the red marker.
+
+# Collecting silica-gel botanical specimens
+
+For each tree in the cell collect a botanical specimen as follows:
+
+1. Use clipper pole to take a specimen.
+2. Trim specimen with clippers. Make sure we can clearly see leaves and other features such as presence (and color) of latex and/or resine.
+3. Report unique id of tree on hang tags using pencil.
+4. Tie hang tag to specimen and put it in a bag.
+5. Score treewise morphological characters
+6. Each time a tree has been fully documented, add a third line on the trunk using the red marker.
+7. Once at the campsite place several leaves/ leaf fragments in a coffee filter with a teaspoon of silica gel. fold the coffee filter like a diaper and seal with a paper clip.
+
+# Collecting voucher botanical specimens
+
+For a data point to be reproducible it MUST be associated with a voucher. For each tree in the cell collect a botanical specimen as follows:
+
+1. Use clipper pole to take a specimen.
+2. Trim specimen with clippers. Make sure we can clearly see leaves and other features such as presence (and color) of latex and/or resine.
+3. Report unique id of tree on hang tags using pencil.
+4. Tie hang tag to specimen and put it in a bag.
+5. Score treewise morphological characters
+6. Each time a tree has been fully documented, add a third line on the trunk using the red marker.
+7. Once at the campsite, trim samples so that they fit on the blotting paper. Make at least 3 replicates (one for BSU, one for local herbarium, one for big herbarium) each with their own tags.
+8. Dip in 70% ethanol if it is suspected that the plant will rot before it is dry.
+9. Sandwich plant between (i) newspaper, (ii) blotting paper, (iii) cardboard, (iv) (optional) corrugated aluminum or holey boards.
+10. Place plant sandwiches in press and tighten straps.
+11. Place press in the sun (MAKE SURE IT DOESNT GET RAINED ON) or over a stove to dry.
+12. Replace newspaper every day or so until the plants are dry.
+13. When plants are dry, secure to herbarium paper using preferred method (sewing, acid-free tape, glue) and be sure to include all relevant information (date collected, collector name, GPS location, gross morphology of tree, surrounding ecosystem, grade of land, elevation of land, grant number, etc...) on a sticker tag on the herbarium paper.
+
+# Photographing botanical specimens
+
+1. Place black cloth on aluminum table.
+2. Place ruler on the side of the cloth to show scale.
+3. Position each specimen on the cloth making sure that we can clearly read hang tag. Position two leaves on each side (one facing up and one facing down).
+4. Take 1 photograph of specimen with flash on using Nikon coolpix.
+5. Report unique picture ID in Ecology.csv.
+
+# Measuring the height of a tree using an Abney level
+
+1. Take out your Abney level and roll of measuring tape
+2. Have one person hold the end of the measuring tape to the trunk of the tree at breast height.
+3. Walk back 30 meters.
+4. Make sure the abney level's plumbbob's fulcrum is loosened.
+5. Look through Abney level's scope at top of tree's crown.
+6. Tighten fulcrum screw while looking at crown.
+7. Record value at which the plumbbob points and multiply that by 30 to get the tree's height in meters.

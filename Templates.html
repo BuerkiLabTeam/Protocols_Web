@@ -10,36 +10,22 @@
 
 
 
-<meta name="date" content="2021-01-15" />
+<meta name="date" content="2021-03-26" />
 
-<title>Function Lexicon</title>
+<title>Templates</title>
 
-<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.16/datatables.js"></script>
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="site_libs/jszip-1.10.20/jszip.min.js"></script>
-<script src="site_libs/pdfmake-1.10.20/pdfmake.js"></script>
-<script src="site_libs/pdfmake-1.10.20/vfs_fonts.js"></script>
-<link href="site_libs/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet" />
-<script src="site_libs/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script>
-<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -130,33 +116,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .dropdown-submenu {
   position: relative;
@@ -276,6 +262,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -283,6 +332,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -295,7 +354,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">G2PMineR</a>
+      <a class="navbar-brand" href="index.html">Protocols</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -303,22 +362,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ReproducibleCode.html">Reproducible Pipeline</a>
+  <a href="LaboratoryProtocols.html">Laboratory Protocols</a>
 </li>
 <li>
-  <a href="Figures.html">Vignette Figures</a>
+  <a href="FieldProtocols.html">Field Protocols</a>
 </li>
 <li>
-  <a href="Tables.html">Vignette Objects</a>
-</li>
-<li>
-  <a href="Lexicon.html">Function Lexicon</a>
-</li>
-<li>
-  <a href="References.html">References</a>
-</li>
-<li>
-  <a href="Funding.html">Funding</a>
+  <a href="ComputationalProtocols.html">ComputationalProtocols</a>
 </li>
 <li>
   <a href="License.html">License</a>
@@ -335,17 +385,27 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Function Lexicon</h1>
-<h4 class="date">2021-01-15</h4>
+<h1 class="title toc-ignore">Templates</h1>
+<h4 class="date">2021-03-26</h4>
 
 </div>
 
 
-<div id="htmlwidget-cfa2013f8c9d5316af70" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cfa2013f8c9d5316af70">{"x":{"filter":"none","extensions":["Buttons"],"data":[["AbstractsClusterMakeR","AbstractsProportionCalculator","AlphaNumericalizeR","ConsensusInferreR","GeneFrequencySifteR","GeneNamesGroupeR","GenesLookeR","HTMLElementRemoveR","InternalPairwiseDistanceInferreR","MakeAbsPhenLongform","MakeAbstractsSppLongform","MakeGenesOutLongform","MatchesBarPlotteR","MembershipInvestigatoR","PairwiseDistanceInferreR","PhenotypeLookeR","SpeciesAbbreviatoR","SpeciesLookeR","SynonymReplaceR","TopN_PickeR","TopN_PickeR_Internal","UtilityGradeR"],["Perform clustering analysis of abstracts (function)","Calculate proportion of abstracts with at least one G match (function)","Remove non-ANSI characters from strings (function)","Performs consensus analysis (function)","Sift genes by frequency, NOTE this asks for a user input through a prompt (function)","Create artificial gene groups (function)","Perform gene mining (function)","Remove HTML elements that may be present in the abstract text (function)","Calculate internal matchwise distance matrix (function)","Make phenotype words mining results longform (function)","Make taxonomy mining results longform (function)","Make gene mining results longform (function)","Make barplot input matrix (function)","Investigate membership of abstract cluster groups (function)","Calculate inter-datatype matchwise distances (function)","Mine for phenotype words (function)","Abbreviate species names (function)","Perform taxonomical mining (function)","Replace gene synonyms with accepted gene names (function)"," Select only the top N (function)"," Select only the top N (function)","Grade the usefulness of matches (function)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Function<\/th>\n      <th>Purpose<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Blfrtip","buttons":["copy","csv","excel","pdf","print"],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div id="pcr-plate-loading-templates" class="section level2">
+<h2><span class="header-section-number">0.1</span> PCR PLate Loading Templates</h2>
+<p>Print these out and paste them in your notebook when running a PCR</p>
+<p><a href="https://doi.org/10.6084/m9.figshare.14325620">Click here to download the template in green</a></p>
+<p><a href="https://doi.org/10.6084/m9.figshare.14325566">Click here to download the template in black and white</a></p>
+</div>
+<div id="scary-mutagen-warning-sign" class="section level1">
+<h1><span class="header-section-number">1</span> Scary Mutagen Warning Sign</h1>
+<p><a href="https://doi.org/10.6084/m9.figshare.14325644">Click here to download the scary mutagen warning sign</a></p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -378,6 +438,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -7,7 +7,7 @@ output:
   bookdown::html_document2: 
     toc: TRUE
     toc_float: TRUE
-    theme: united
+    theme: flatly
 link-citations: yes
 fontsize: 12pt
 urlcolor: blue
@@ -17,15 +17,6 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
-
-```{js logo-js, echo=FALSE}
-$(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"logo\"><img src=\"100px-AGPLv3_Logo.svg.png\" style=\"position:absolute; top:0; right:0; padding:10px; height:100px\"></div>');
-  $('#header').css('margin-right', '120px')
-});
-```
-
-G2PMineR is released under the GNU Aferro General Public License v. 3
 
 The text of the license can be found at https://opensource.org/licenses/GPL-3.0. The text of the AGPL v. 3 can also be found below.
 

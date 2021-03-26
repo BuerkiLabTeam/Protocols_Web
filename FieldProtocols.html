@@ -10,13 +10,13 @@
 
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-26" />
 
-<title>Vignette Objects Descriptions</title>
+<title>Field Protocols</title>
 
-<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -26,23 +26,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.16/datatables.js"></script>
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="site_libs/jszip-1.10.20/jszip.min.js"></script>
-<script src="site_libs/pdfmake-1.10.20/pdfmake.js"></script>
-<script src="site_libs/pdfmake-1.10.20/vfs_fonts.js"></script>
-<link href="site_libs/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet" />
-<script src="site_libs/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script>
-<script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script>
-<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -133,33 +116,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .dropdown-submenu {
   position: relative;
@@ -371,7 +354,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">G2PMineR</a>
+      <a class="navbar-brand" href="index.html">Protocols</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -379,22 +362,13 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ReproducibleCode.html">Reproducible Pipeline</a>
+  <a href="LaboratoryProtocols.html">Laboratory Protocols</a>
 </li>
 <li>
-  <a href="Figures.html">Vignette Figures</a>
+  <a href="FieldProtocols.html">Field Protocols</a>
 </li>
 <li>
-  <a href="Tables.html">Vignette Objects</a>
-</li>
-<li>
-  <a href="Lexicon.html">Function Lexicon</a>
-</li>
-<li>
-  <a href="References.html">References</a>
-</li>
-<li>
-  <a href="Funding.html">Funding</a>
+  <a href="ComputationalProtocols.html">ComputationalProtocols</a>
 </li>
 <li>
   <a href="License.html">License</a>
@@ -411,20 +385,91 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Vignette Objects Descriptions</h1>
-<h4 class="date">2021-03-19</h4>
+<h1 class="title toc-ignore">Field Protocols</h1>
+<h4 class="date">2021-03-26</h4>
 
 </div>
 
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"logo\"><img src=\"G2PMineR_logo.jpg\" style=\"position:absolute; top:0; right:0; padding:10px; height:120px\"></div>');
-  $('#header').css('margin-right', '120px')
-});
-</script>
-<div id="htmlwidget-fb24cbd4efaa1e46e0d6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fb24cbd4efaa1e46e0d6">{"x":{"filter":"none","extensions":["Buttons"],"data":[[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3],[1,2,2,3,3,3,3,4,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7],["meminv","AbstractsSpp","SpeciesAbbrvs","GenesOut","GeneGroups","GeneGrades","GeneFrequencySifteR","AbsPhen","GenesOutLong","AbstractsSppLong","AbsPhenLong","ConsensusMatrix","SppBarPlotDF","Genez","GenesBarPlotDF","PhenoBarPlotDF","SppInt","SppIntSmall","GenInt","GenIntSmall","PhenInt","PhenIntSmall","PhenoSpecies","PhenoSpeciesSmall","GeneSpecies","GeneSpeciesSmall","PhenoGenes","PhenoGenesSmall"],["Membership of abstract cluster groups","Taxonomical mining rsults","Abbreviated taxonomy, used in GenesLookeR","Gene mining results","Artificial gene groups","Grading the usefulness of gene matches according to our needs","Sift genes based on a user-defined threshold of matches","Phenotype mining results","Longform gene mining results","Longform taxonomical mining results","Longform phenotype mining results","Matrix showing abstracts passing consensus tests","Input for taxonomical bar plot","Truncated GenesOut wth Genes and IDs only","Input for gene bar plot","Input for phenotypes bar plot","Internal matchwise distance matrix for Ta","Top N only internal matchwise distance matrix for Ta","Internal matchwise distance matrix for G","Top N only internal matchwise distance matrix for G","Internal matchwise distance matrix for P","Top N only internal matchwise distance matrix for P","Phenotypes vs species inter-datatype matchwise distance matrix","Top N only phenotypes vs species inter-datatype matchwise distance matrix","Genes vs species inter-datatype matchwise distance matrix","Top N only genes vs species inter-datatype matchwise distance matrix","Phenotypes vs genes inter-datatype matchwise distance matrix","Top N only phenotypes vs genes inter-datatype matchwise distance matrix"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Step<\/th>\n      <th>Module<\/th>\n      <th>Table<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Blfrtip","buttons":["copy","csv","excel","pdf","print"],"columnDefs":[{"className":"dt-right","targets":[0,1]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="setting-up-botanical-plot-marking-trees" class="section level1">
+<h1><span class="header-section-number">1</span> Setting up botanical plot &amp; marking trees</h1>
+<p>A botanical plot of 50 m x 50 m will be set up (see Figure 1) and all trees with DBHs &gt;5 cm will be marked and counted.</p>
+<ol style="list-style-type: decimal">
+<li>Identify and tag (with red tape) a reference tree representing the far right bottom of the plot.</li>
+<li>Delimit a 50 m x 50 m plot by using the 50 m linear tape as well as the compass (to maintain either South/North or West/East direction) (name and tag corner trees: T1-T4).</li>
+<li>Plant a yellow flag every 5 m (using pre-labeled flags) to establish a grid of 100 cells (Figure 1).</li>
+<li>Flag trees at each corner of the plot with red tape.</li>
+<li>Record geographical coordinates of four corners of the plot using the Garmin GPS.</li>
+<li>Visit each cell of the plot and mark trees with DBHs with one line (this is important).</li>
+</ol>
+</div>
+<div id="measuring-dbh-height-and-position-of-trees-within-plot" class="section level1">
+<h1><span class="header-section-number">2</span> Measuring DBH, height and position of trees within plot</h1>
+<p>In this step, we will visit each cell of the grid and record the following information for each tree with a DBH &gt;5 cm.</p>
+<ol style="list-style-type: decimal">
+<li>Use wood folding ruler to measure DBH of each marked trees in cell.</li>
+<li>Assign unique ID to trees as follows: CxTy. C stands for cell and T stands for tree.</li>
+<li>Stand in the right bottom corner of the cell (=reference).</li>
+<li>Use laser to calculate distances to each tree while staying in right bottom corner of cell.</li>
+<li>Report angles to trees using compass. Angles will be between 0 and 90 degrees on the way up of the plot, whereas they will be between 180 and 270 degrees on the way down of the plot.</li>
+<li>Measure tree heights using the 2 points method implemented in laser.</li>
+<li>Each time a tree has been fully documented, add a second line on the trunk using the red marker.</li>
+</ol>
+</div>
+<div id="collecting-silica-gel-botanical-specimens" class="section level1">
+<h1><span class="header-section-number">3</span> Collecting silica-gel botanical specimens</h1>
+<p>For each tree in the cell collect a botanical specimen as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Use clipper pole to take a specimen.</li>
+<li>Trim specimen with clippers. Make sure we can clearly see leaves and other features such as presence (and color) of latex and/or resine.</li>
+<li>Report unique id of tree on hang tags using pencil.</li>
+<li>Tie hang tag to specimen and put it in a bag.</li>
+<li>Score treewise morphological characters</li>
+<li>Each time a tree has been fully documented, add a third line on the trunk using the red marker.</li>
+<li>Once at the campsite place several leaves/ leaf fragments in a coffee filter with a teaspoon of silica gel. fold the coffee filter like a diaper and seal with a paper clip.</li>
+</ol>
+</div>
+<div id="collecting-voucher-botanical-specimens" class="section level1">
+<h1><span class="header-section-number">4</span> Collecting voucher botanical specimens</h1>
+<p>For a data point to be reproducible it MUST be associated with a voucher. For each tree in the cell collect a botanical specimen as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Use clipper pole to take a specimen.</li>
+<li>Trim specimen with clippers. Make sure we can clearly see leaves and other features such as presence (and color) of latex and/or resine.</li>
+<li>Report unique id of tree on hang tags using pencil.</li>
+<li>Tie hang tag to specimen and put it in a bag.</li>
+<li>Score treewise morphological characters</li>
+<li>Each time a tree has been fully documented, add a third line on the trunk using the red marker.</li>
+<li>Once at the campsite, trim samples so that they fit on the blotting paper. Make at least 3 replicates (one for BSU, one for local herbarium, one for big herbarium) each with their own tags.</li>
+<li>Dip in 70% ethanol if it is suspected that the plant will rot before it is dry.</li>
+<li>Sandwich plant between (i) newspaper, (ii) blotting paper, (iii) cardboard, (iv) (optional) corrugated aluminum or holey boards.</li>
+<li>Place plant sandwiches in press and tighten straps.</li>
+<li>Place press in the sun (MAKE SURE IT DOESNT GET RAINED ON) or over a stove to dry.</li>
+<li>Replace newspaper every day or so until the plants are dry.</li>
+<li>When plants are dry, secure to herbarium paper using preferred method (sewing, acid-free tape, glue) and be sure to include all relevant information (date collected, collector name, GPS location, gross morphology of tree, surrounding ecosystem, grade of land, elevation of land, grant number, etc…) on a sticker tag on the herbarium paper.</li>
+</ol>
+</div>
+<div id="photographing-botanical-specimens" class="section level1">
+<h1><span class="header-section-number">5</span> Photographing botanical specimens</h1>
+<ol style="list-style-type: decimal">
+<li>Place black cloth on aluminum table.</li>
+<li>Place ruler on the side of the cloth to show scale.</li>
+<li>Position each specimen on the cloth making sure that we can clearly read hang tag. Position two leaves on each side (one facing up and one facing down).</li>
+<li>Take 1 photograph of specimen with flash on using Nikon coolpix.</li>
+<li>Report unique picture ID in Ecology.csv.</li>
+</ol>
+</div>
+<div id="measuring-the-height-of-a-tree-using-an-abney-level" class="section level1">
+<h1><span class="header-section-number">6</span> Measuring the height of a tree using an Abney level</h1>
+<ol style="list-style-type: decimal">
+<li>Take out your Abney level and roll of measuring tape</li>
+<li>Have one person hold the end of the measuring tape to the trunk of the tree at breast height.</li>
+<li>Walk back 30 meters.</li>
+<li>Make sure the abney level’s plumbbob’s fulcrum is loosened.</li>
+<li>Look through Abney level’s scope at top of tree’s crown.</li>
+<li>Tighten fulcrum screw while looking at crown.</li>
+<li>Record value at which the plumbbob points and multiply that by 30 to get the tree’s height in meters.</li>
+</ol>
+</div>
 
 
 
