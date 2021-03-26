@@ -9,7 +9,9 @@ navbar:
       href: LaboratoryProtocols.html
     - text: "Field Protocols"
       href: FieldProtocols.html
-    - text: "ComputationalProtocols"
+    - text: "Computational Protocols"
       href: ComputationalProtocols.html
+    - text: "Printable Templates"
+      href: Templates.html
     - text: "License"
       href: License.html
