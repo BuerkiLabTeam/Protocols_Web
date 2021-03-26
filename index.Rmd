@@ -55,4 +55,4 @@ Within each section the different protocols are listed in a box on the left. Cli
 
 In your publication cite the protocol as follows (modified as per journal requirements, of course):
 
-Wojahn, J., M., A., Buerki, S. 2021. *A website detailing the protocols of the Buerki Lab*. www.BuerkiLabTeam.github.io/Protocols_Web
+Lastname, F. M. 2018. "Lorem ipsum protocol" in Wojahn, J., M., A., Buerki, S. 2021. *A website detailing the protocols of the Buerki Lab*. www.BuerkiLabTeam.github.io/Protocols_Web
