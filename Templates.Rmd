@@ -19,7 +19,7 @@ editor_options:
 ---
 
 
-## PCR PLate Loading Templates
+# PCR PLate Loading Templates
 
 Print these out and paste them in your notebook when running a PCR
 
