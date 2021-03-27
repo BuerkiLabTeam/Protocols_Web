@@ -20,7 +20,7 @@ editor_options:
 
 # Measuring Leaves With Fiji
 
-**Michael Wojahn**
+**John M.A. Wojahn**
 
 **10/24/2018**
 
@@ -73,7 +73,7 @@ Repeat steps 1-17 for each image.
 
 # How to Use mPTP
 
-**Michael Wojahn**
+**John M.A. Wojahn**
 
 **October 2019**
 
@@ -181,7 +181,7 @@ where myname is your GitHub handle and myprivaterepo is the name of your private
 14. Choose BuerkiLab
 15. Log out of the lab’s GitHub account
 
-# How to merge your rempository into the lab's
+# How to merge your repository into the lab's
 
 1. Log out of your GitHub account
 2. Log into the lab’s GitHub Account
@@ -203,7 +203,7 @@ Password: ****************
 
 # Processing seedling images for machine learning
 
-**By Michael Wojahn and Sven Buerki**
+**John M.A. Wojahn and Sven Buerki**
 
 1. Download image from GoogleDrive
 2. Open image in Preview

@@ -18,9 +18,38 @@ editor_options:
     wrap: sentence
 ---
 
+# Sterilizing Counter
+
+**John M.A. Wojahn, Byron Crump**
+
+**2013**
+
+1. Wipe off any dry contaminants (e.g. mud, sand, silica gel dust) into trash.
+2. Spray counter liberally with bleach cleaning solution (1X Sodium Hypochlorite; this destroys most of the DNA and RNA)
+3. Let sit 30 seconds then wipe off the bleach solution with a clean paper towel.
+4. Spray counter liberally with 70% ethanol solution (This kills any living organisms and also dries the counter faster).
+3. Let sit 30 seconds then wipe off the ethanol solution with a clean paper towel.
+4. OPTIONAL Spray counter with RNase decontamination solution (e.g. RNase Zap; this deactivates any remaining RNases on the counter, this is necessary if doing an RNA extraction).
+
+# Sterilizing Laminar Flow Hood
+
+**John M.A. Wojahn, Byron Crump**
+
+**2013**
+
+This protocol must be done both before and after using laminar flow hood.
+
+1. Wipe off any dry contaminants (e.g. mud, sand, silica gel dust) into trash.
+2. Spray hood counter liberally with bleach cleaning solution (1X Sodium Hypochlorite; this destroys most of the DNA and RNA)
+3. Let sit 30 seconds then wipe off the bleach solution with a clean paper towel.
+4. Spray counter liberally with 70% ethanol solution (This kills any living organisms and also dries the counter faster).
+3. Let sit 30 seconds then wipe off the ethanol solution with a clean paper towel.
+4. OPTIONAL Spray counter with RNase decontamination solution (e.g. RNase Zap; this deactivates any remaining RNases on the counter, this is necessary if doing an RNA extraction).
+5. Turn on the ultraviolet sterilization lamp for 30 minutes (do not look at the lamp).
+
 # Extraction Protocol For Tropical and Temperate Plant Leaf Tissue
 
-**Michael Wojahn, Sven Buerki**
+**John M.A. Wojahn, Sven Buerki**
 
 **2018**
 
@@ -123,7 +152,7 @@ prevent breakage
 
 # How To Run A Gel
 
-**By Michael Wojahn**
+**John M.A. Wojahn**
 
 **2014, Revised 2019**
 
@@ -161,7 +190,7 @@ Get out bleach, ethanol, paper towels, tube racks, your DNA, a gel dock, the gel
 
 # How to Use a Qubit Fluorometer
 
-**By Michael Wojahn**
+**John M.A. Wojahn**
 
 **2015, revised 2019**
 
@@ -199,9 +228,33 @@ Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine
 28.	Repeat the above five steps for each sample. 
 29.	Once done, discard of used Qubit tubes in the trash (reagents do not require special disposal methods). 
 
+# How to use a Nanodrop Spectrophotometer
+
+**John M.A. Wojahn and Sven Buerki**
+
+**2017**
+
+1. Plug in Nanodrop machine.
+2. Choose "Nucleotides".
+3. Lift arm and pipette 2 µL ultrapure water onto the pedestal (make sure it is centered and that the droplet is plump).
+4. Lower arm.
+5. Choose "DNA" or "RNA".
+6. Lift arm and wipe off pedestal with dry kimwipe and then pipet 2 µL of blanking solution to pedestal (make sure it is centered and that the droplet is plump).
+7. Lower arm.
+8. Hit "Blank".
+9. Lift arm and wipe off pedestal with dry kimwipe and then pipet 2 µL of sample solution to pedestal (make sure it is centered and that the droplet is plump).
+10. Lower arm.
+11. Hit "Measure".
+12. Record values.
+13. Lift arm and wipe off pedestal with dry kimwipe and repeat steps 9-12 for each sample.
+14. When done pipette 2 µL ultrapure water onto the pedestal (make sure it is centered and that the droplet is plump).
+15. Close and open arm and wipe off droplet with a dry kimwipe.
+16. Unplug Nanodrop machine.
+
+
 # New Protocol for Non-Coriaceous Leaf Tissue Preparation
 
-**Michael Wojahn and Sven Buerki**
+**John M.A. Wojahn and Sven Buerki**
 
 **21 March 2019**
 
@@ -230,7 +283,7 @@ Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine
 
 # How To Clean Metal Beads
 
-**Michael Wojahn**
+**John M.A. Wojahn**
 
 **21 March 2019**
 
@@ -258,7 +311,7 @@ Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine
 
 # Protocol for Submitting Unpurified PCR Products for Sanger Sequencing to GenWiz
 
-**Michael Wojahn**
+**John M. A. Wojahn**
 
 **29 May 2019**
 
@@ -299,3 +352,72 @@ Ensure that bleach, ethanol, paper towels, racks, Qubit tubes, the Qubit machine
   **USA**
     
   **908-222-0711**
+  
+  
+# Making 50X TAE Buffer Stock
+
+**John. M. A. Wojahn, Byron C. Crump**
+
+**2013** 
+
+Ingredients:
+
+* 242 g tris base
+* 700 mL ultrapure water + extra to get to 1 L final volume
+* 57.1 mL glacial acetic acid (warning: smelly)
+* 100 mL EDTA 0.5 M at pH 8
+
+Recipe:
+
+1. Add the tris base to a 2 L beaker.
+2. Place a magnetic stir rod in the beaker.
+3. Add the ultrapure water to the beaker.
+4. Use a stirplate to FULLY dissolve the tris base in the water.
+5. Add glacial acetic acid and EDTA to the beaker.
+6. Add enough ultrapure water to get solution to approximately 1 L volume.
+7. Stir for a couple more minutes to ensure homogeneity.
+8. Pour solution into bottle and cap tightly.
+
+# Making 1X TAE Buffer from 50X TAE Buffer Stock
+
+**John. M. A. Wojahn, Byron C. Crump**
+
+**2013**
+
+*For 1 L 1X solution*
+
+1. Add 20 mL of 50X stock solution to receptacle container.
+2. Add 980 mL of ultrapure water to receptacle container.
+3. Mix thoroughly through shaking and inversion.
+
+# Amplifying DNA using PCR
+
+**John. M. A. Wojahn, Sven Buerki**
+
+**2017**
+
+BEFORE DOING ANYTHING: Write the order in which you want to load your samples into the notebook template (you can print it from the Templates section of this website if none are available in the lab) and then place your sample tubes in a 96-hole tube rack in that same order. MAKE SURE TO NOT ROTATE TUBE RACK OR PCR PLATE.
+
+1. To each well, add the following reagents in the order below (you do not need to change tips between columns/cells except for when adding the template):
+
+    * 12.5 µL Master Mix (e.g. AmpliTaq Gold 360)
+    * 1 µL 1/10X forward primer
+    * 1 µL 1/10X reverse primer
+    * 8.5 µL ultrapure water
+    * OPTIONAL 5 µL Mg 2+
+    * 2 µL template
+
+2. Cover tubes with caps and press down with finger.
+3. Once all tubes are capped use the rubber roller to ensure they are all tight.
+4. Spin down in plate spinner (USE BALANCE WEIGHT IF ONLY DOING 1 PLATE).
+5. Place plate in PCR machine and tighten the lid (if too loose the caps will come off and there will be mixing and/or evaporative losses; if too tight the tubes could crack or the caps may invert causing mixing and/or evaporative losses).
+6. PCR machines differ in how to input instructions into them, so the settings referenced here are generic.
+7. Set the reaction volume (100 µL or 105 µL depending on whether Mg @+ was added).
+8. Use heated lid.
+9. Use the correct preset for your primers (e.g. ITS-WOJ or TRNL-WOJ)
+10. Spin down in plate spinner (USE BALANCE WEIGHT IF ONLY DOING 1 PLATE).
+11. Add plate to plate holder and plastic dome and label both the holder and base with the PCR number, your name, and date completed.
+12. Place plate in -20 Freezer.
+
+
+

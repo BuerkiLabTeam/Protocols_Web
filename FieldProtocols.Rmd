@@ -20,6 +20,8 @@ editor_options:
 
 # Setting up botanical plot & marking trees
 
+**Sven Buerki and John M. A. Wojahn**
+
 A botanical plot of 50 m x 50 m will be set up (see Figure 1) and all trees with DBHs >5 cm will be marked and counted.
 
 1. Identify and tag (with red tape) a reference tree representing the far right bottom of the plot.
@@ -30,6 +32,8 @@ A botanical plot of 50 m x 50 m will be set up (see Figure 1) and all trees with
 6. Visit each cell of the plot and mark trees with DBHs with one line (this is important).
 
 # Measuring DBH, height and position of trees within plot
+
+**Sven Buerki and John M. A. Wojahn**
 
 In this step, we will visit each cell of the grid and record the following information for each tree with a DBH >5 cm.
 
@@ -43,6 +47,8 @@ In this step, we will visit each cell of the grid and record the following infor
 
 # Collecting silica-gel botanical specimens
 
+**Sven Buerki and John M. A. Wojahn**
+
 For each tree in the cell collect a botanical specimen as follows:
 
 1. Use clipper pole to take a specimen.
@@ -54,6 +60,8 @@ For each tree in the cell collect a botanical specimen as follows:
 7. Once at the campsite place several leaves/ leaf fragments in a coffee filter with a teaspoon of silica gel. fold the coffee filter like a diaper and seal with a paper clip.
 
 # Collecting voucher botanical specimens
+
+**John M. A. Wojahn and Sven Buerki**
 
 For a data point to be reproducible it MUST be associated with a voucher. For each tree in the cell collect a botanical specimen as follows:
 
@@ -73,6 +81,8 @@ For a data point to be reproducible it MUST be associated with a voucher. For ea
 
 # Photographing botanical specimens
 
+**Sven Buerki and John M. A. Wojahn**
+
 1. Place black cloth on aluminum table.
 2. Place ruler on the side of the cloth to show scale.
 3. Position each specimen on the cloth making sure that we can clearly read hang tag. Position two leaves on each side (one facing up and one facing down).
@@ -80,6 +90,8 @@ For a data point to be reproducible it MUST be associated with a voucher. For ea
 5. Report unique picture ID in Ecology.csv.
 
 # Measuring the height of a tree using an Abney level
+
+**John M. A. Wojahn**
 
 1. Take out your Abney level and roll of measuring tape
 2. Have one person hold the end of the measuring tape to the trunk of the tree at breast height.
