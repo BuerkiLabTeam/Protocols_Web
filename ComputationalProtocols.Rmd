@@ -200,6 +200,17 @@ Password: ****************
 11. Click on Confirm Merge
 12. Log out of the lab's GitHub account
 
+# Unlinking an old git domain from a preexisting project
+
+**John M. A. Wojahn**
+
+**March 2021**
+
+Go to the Git tab and click on the gearwheel. Select Shell.
+
+```{bash, eval = F}
+git remote rm origin
+```
 
 # Processing seedling images for machine learning
 
