@@ -23,8 +23,6 @@ editor_options:
 
 ```{js logo-js, echo=FALSE}
 $(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Images/tree_abstract_art_flowers_1.jpg\" style=\"position:absolute; top:0; right:0; padding:10px; height:200px\"></div>');
-  $('#header').css('margin-right', '120px')
 });
 ```
 

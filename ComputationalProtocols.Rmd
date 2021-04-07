@@ -226,3 +226,12 @@ seedling as possible while excluding post-it notes and rulers
 7. Save image and add “_crop” to end of filename (but before extension)
 8. Reupload cropped image to a new folder on GoogleDrive
 
+# Counting number of dark objects against a light background automatically
+
+**John M. A. Wojahn**
+
+**April 2021**
+
+1. Make sure you have "EBImage" and "raster" installed
+2. Go to https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground
+3. Follow the pipeline on GitHub
