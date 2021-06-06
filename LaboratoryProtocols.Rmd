@@ -127,7 +127,7 @@ rack.
 21. Open all 1.5 mL microfuge tubes in row B and all white spin columns in row C
 22. Transfer 500 uL of flow through to 1.5 mL microfuge tube avoiding disturbing the pellet
 23. Add 750 uL reagent 4 to liquid in tube and mix immediately using pipette tip
-24. Using same tip transfer ~600 uL mixture to lilac spin column and close it
+24. Using same tip transfer ~600 uL mixture to white spin column and close it
 25. Repeat 19, 20, and 21 for each sample
 26. Centrifuge white spin columns for 4 minutes at 12,000 rpm
 27. Discard flow through and repeat until all of the mixture has gone through the white spin
