@@ -47,7 +47,105 @@ This protocol must be done both before and after using laminar flow hood.
 4. OPTIONAL Spray counter with RNase decontamination solution (e.g. RNase Zap; this deactivates any remaining RNases on the counter, this is necessary if doing an RNA extraction).
 5. Turn on the ultraviolet sterilization lamp for 30 minutes (do not look at the lamp).
 
-# Extraction Protocol For Tropical and Temperate Plant Leaf Tissue
+# Mortar and Pestle Extraction Protocol for Coriaceous and Thick Tropical Plant Leaf Tissue
+
+**John M.A. Wojahn, Sven Buerki**
+
+**2021**
+
+## Materials:
+
+* Qiagen Plant Mini Kit
+* Vortex mixer
+* 1.5 mL Conical Microfuge Tubes
+* 2mL Globe Scientific Round-Bottomed Tubes 
+* P1000 and tips
+* P200 and tips
+* P10 and tips
+* Reagent Ethanol
+* Cleaning Ethanol
+* Cleaning Bleach
+* Scale
+* Weigh Boat
+* Tweezers
+* Scissors
+* Kimwipes
+* Tube Rack
+* Liquid Nitrogen
+* Mortar and Pestle
+* Oscillating Dry Bath
+* Microfuge
+* Ice
+* Foam Microfuge Filler Blocks
+* Spoontula or Rubber Policeman
+
+## Reagent Key:
+
+* Reagent 1 = AP1 
+* Reagent 2 = RNAse 
+* Reagent 3 = P3 
+* Reagent 4 = AW1 
+* Reagent 5 = AW2 
+* Reagent 6 = AE
+
+## Steps:
+1. Clean counter with bleach and ethanol
+2. Add reagent ethanol to Qiagen reagents 4 and 5 according to their caps if not done
+already
+3. Place tubes in rack thusly:
+    a. 2 mL round-bottomed tube 
+    b. Lavender spin column
+    c. 1.5 mL microfuge tube
+    d. White spin column
+    e. Empty waste tube
+    f. 1.5 mL microfuge tube
+4. Label tubes with IDs
+5. Preheat oscillating dry bath to 65 degrees C and max oscillations. Take off plastic lid by sliding it backwards
+6. Write down sample information in notebook
+7. Shake loose silica from sample packet
+8. Using tweezers take out leaf strips and weigh out 0.2 g using weigh boat and scale.
+Never use up all the sample, always leave at least a little material.
+9. Place leaf material in sterile mortar and pestle
+10. Pour in about 50 mL of liquid Nitrogen
+11. Grind material until it is powdery, like matcha
+12. Scrape material into 2 mL tube with spoontula or rubber policeman
+13. Add 800 uL reagent 1 and 5 uL RNAse to round-bottomed tubes and place in oscillating
+dry bath for 30 min.
+14. Take tubes out of oscillating dry bath and place in room temperature rack
+15. Make sure you have ice available
+16. Add 130 uL of reagent 3 to each tube, vortex, and immediately place tube in ice
+rack.
+17. Incubate tubes in ice for 5 minutes
+18. Centrifuge tubes for 8 min at 12,000 rpm
+19. Transfer 600 uL supernatant to lilac spin column
+20. Centrifuge lilac spin columns for 8 min at 12,000 rpm
+21. Open all 1.5 mL microfuge tubes in row B and all white spin columns in row C
+22. Transfer 500 uL of flow through to 1.5 mL microfuge tube avoiding disturbing the pellet
+23. Add 750 uL reagent 4 to liquid in tube and mix immediately using pipette tip
+24. Using same tip transfer ~600 uL mixture to white spin column and close it
+25. Repeat 19, 20, and 21 for each sample
+26. Centrifuge white spin columns for 4 minutes at 12,000 rpm
+27. Discard flow through and repeat until all of the mixture has gone through the white spin
+column
+28. Transfer spin basket to empty waste tube
+29. Add 500 uL reagent 5 to each spin column
+30. Centrifuge white spin column for 4 min at 12,000 rpm
+31. Discard flow through and repeat steps 28 through 30
+32. Transfer spin basket to empty collection tubes
+33. Add 50 uL reagant 6 directly on membrane of spin basket
+34. Incubate at room temperature for 5 minutes
+35. Centrifuge tubes at 12,000 rpm for 5 minutes
+36. Repeat steps 32, 33, and 34
+37. Transfer 100 uL of eluate to 1.5 mL conical tube
+37. Close tube and use NanoDrop to quantify DNA and assess purity
+38. Place tubes in labeled rack in -20 freezer
+39. Clean mortar and pestle and spoontula with bleach, rinse, then autoclave: just use bleach and ethanol on rubber policeman
+40. Clean counter with bleach and ethanol
+
+
+
+
+# Bead-Beating Extraction Protocol For Tropical and Temperate Plant Leaf Tissue
 
 **John M.A. Wojahn, Sven Buerki**
 
