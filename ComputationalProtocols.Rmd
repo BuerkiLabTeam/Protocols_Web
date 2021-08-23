@@ -18,6 +18,193 @@ editor_options:
     wrap: sentence
 ---
 
+# How to set up SSH authentication on GitHub (REQUIRED September 2021)
+**John M.A. Wojahn**
+
+**August 2021**
+
+1.	Open RStudio
+2.	Click ‘Tools’
+3.	Click ‘Global Options’
+4.	Click ‘Git/Svn’
+5.	Click ‘Create Key’
+6.	Close RandomArt window
+7.	Click ‘View public key’
+8.	Copy key
+9.	Login to GitHub
+10.	Click ‘Settings’
+11.	Click ‘SSH and GPG keys’
+12.	Click ‘New SSH key’
+13.	Paste key from clipboard
+14.	Name key
+15.	Click ‘Add SSH key’
+16.	Enter password if prompted
+
+
+# How to make an R project that links up to GitHub UPDATED 2021
+
+**John M.A. Wojahn**
+
+**August 2021**
+
+1. Make a new R project in a new directory and click Create Git repository
+2. Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. TOGGLE THE SWITCH THAT SAYS 'HTTPS' TO 'SSH'. Copy the URL that ends in “git” that appears.
+3. Go to the Git tab and click on the gearwheel. Select Shell.
+4. Add your url to the below code, then paste it into the terminal window that popped up. 
+```{bash, eval = F}
+git remote add origin git@github.com:wojahn/MyProject.git
+```
+5. Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
+message, and then hit Commit.
+6. Now push to fill the empty GitHub repository by pasting the below code:
+```{bash, eval = F}
+git push -u origin master
+```
+7. Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.
+
+# How to change a project from HTTPS to SSH git authentication
+**John M.A. Wojahn**
+
+**August 2021**
+
+1. Open project
+2. Go to the Git tab and click on the gearwheel. Select Shell.
+3. Paste exactly the code below then hit enter
+```{bash, eval = F}
+git remote rm origin
+```
+4. Now we remake the origin using ssh, to do that edit the below code so that 'wojahn' is your handle and 'MyProject' is your existing GitHub project name. Once done editing, paste the code into terminal and hit enter.
+```{bash, eval = F}
+git remote add origin git@github.com:wojahn/MyProject.git
+```
+5. Now make first new commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save (if any), enter a message, and then hit Commit.
+6. Now push to fill the empty GitHub repository by pasting exactly the below code:
+```{bash, eval = F}
+git push -u origin master
+```
+7. Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.
+
+# How to set up dual-factor identification for GitHub
+**John M.A. Wojahn**
+
+**August 2019**
+
+1. Log into your GitHub account
+2. Click your avatar image in the upper righthand corner
+3. Click 'Settings'
+4. Click 'Account security'
+5. Make sure you have the Duo app on your smartphone
+6. Follow prompts to enable dual-factor authentication
+7. Once QR code appears, open Duo on your phone, following any prompts
+8. Click the "+" in Duo
+9. Scan the QR code with your camera
+10. Accept any prompts
+11. Now when you log onto GitHub it will send a push to your phone via Duo
+12. If you have SSH enabled for RStudio you won't be prompted to do two-factor authentication for connecting to GitHub
+
+# How to fork your public repository to the lab's
+**John M.A. Wojahn**
+
+**October 2019**
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+3. Search for your account’s name in the search bar
+4. Click on 'Repositories'
+5. Click on the public repository you want to fork
+6. Click on 'Fork' (top left)
+7. Choose "BuerkiLab"
+8. Log out of the lab’s GitHub account
+
+# How to fork your private repository to the lab's
+**John M.A. Wojahn**
+
+**October 2019**
+1. Go to your homepage
+2. Click on 'Repositories'
+3. Click on your repository name
+4. Click on 'Settings'
+5. Click on 'Manage Access'
+6. Click on 'Invite Collabortator'
+7. Search for “BuerkiLab” and click on the match
+8. Click on 'Add BuerkiLab to this repository'
+9. Log out of your GitHub account
+10. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+11. Paste this into browser:
+```{bash, eval = F}
+https://github.com/myname/myprivaterepo/invitations
+```
+where myname is your GitHub handle and myprivaterepo is the name of your private repository
+12. Click on Accept invitation
+13. Click on Fork (top left)
+14. Choose BuerkiLab
+15. Log out of the lab’s GitHub account
+
+# How to merge your repository into the lab's
+**John M.A. Wojahn**
+
+**October 2019**
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account
+```{bash, eval = F}
+Username: BuerkiLab
+Password: ****************
+```
+3. click on 'Repositories'
+4. Click on the repository you want to merge
+5. Click on 'Compare'
+6. Scroll down a few inches and click on 'switching the base'
+7. Click on 'Create Pull Request'
+8. Write message and click on 'Create Pull Request' again
+9. Click on View Pull Request
+10. Click on Merge Pull Request
+11. Click on Confirm Merge
+12. Log out of the lab's GitHub account
+
+# Unlinking an old git domain from a preexisting project
+
+**John M. A. Wojahn**
+
+**March 2021**
+
+Go to the Git tab and click on the gearwheel. Select Shell.
+
+```{bash, eval = F}
+git remote rm origin
+```
+
+# Processing seedling images for machine learning
+
+**John M.A. Wojahn and Sven Buerki**
+
+1. Download image from GoogleDrive
+2. Open image in Preview
+3. Drag mouse pointer to select rectangular area that encloses as much of the
+seedling as possible while excluding post-it notes and rulers
+4. Press ⌘K to crop
+5. Press alt⌘C to open color preferences tool
+6. Press “auto levels”
+7. Save image and add “_crop” to end of filename (but before extension)
+8. Reupload cropped image to a new folder on GoogleDrive
+
+# Counting number of dark objects against a light background automatically
+
+**John M. A. Wojahn**
+
+**April 2021**
+
+1. Make sure you have "EBImage" and "raster" installed
+2. Go to https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground
+3. Follow the pipeline on GitHub
+
+
 # Measuring Leaves With Fiji
 
 **John M.A. Wojahn**
@@ -122,116 +309,3 @@ python3 ~/PTP-master/setup.py install
 ```{bash, eval = F}
 mptp --tree_file InsertRAxMLTreeNameHere --output_file mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 
 ```
-
-# How to make an R project that links up to GitHub
-
-1. Make a new R project in a new directory and click Create Git repository
-2. Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. Copy the URL that ends in “git” that appears.
-3. Go to the Git tab and click on the gearwheel. Select Shell.
-4. Add your url to the below code, then paste it into the terminal window that popped up. This may produce a warning, that is ok.
-```{bash, eval = F}
-git remote add origin https://github.com/wojahn/MyProject.git
-```
-5. Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
-message, and then hit Commit.
-6. Now push to fill the empty GitHub repository by pasting the below code:
-```{bash, eval = F}
-git push -u origin master
-```
-7. Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.
-
-# How to fork your public repository to the lab's
-
-1. Log out of your GitHub account
-2. Log into the lab’s GitHub Account
-```{bash, eval = F}
-Username: BuerkiLab
-Password: ****************
-```
-3. Search for your account’s name in the search bar
-4. Click on 'Repositories'
-5. Click on the public repository you want to fork
-6. Click on 'Fork' (top left)
-7. Choose "BuerkiLab"
-8. Log out of the lab’s GitHub account
-
-# How to fork your private repository to the lab's
-
-1. Go to your homepage
-2. Click on 'Repositories'
-3. Click on your repository name
-4. Click on 'Settings'
-5. Click on 'Manage Access'
-6. Click on 'Invite Collabortator'
-7. Search for “BuerkiLab” and click on the match
-8. Click on 'Add BuerkiLab to this repository'
-9. Log out of your GitHub account
-10. Log into the lab’s GitHub Account
-```{bash, eval = F}
-Username: BuerkiLab
-Password: ****************
-```
-11. Paste this into browser:
-```{bash, eval = F}
-https://github.com/myname/myprivaterepo/invitations
-```
-where myname is your GitHub handle and myprivaterepo is the name of your private repository
-12. Click on Accept invitation
-13. Click on Fork (top left)
-14. Choose BuerkiLab
-15. Log out of the lab’s GitHub account
-
-# How to merge your repository into the lab's
-
-1. Log out of your GitHub account
-2. Log into the lab’s GitHub Account
-```{bash, eval = F}
-Username: BuerkiLab
-Password: ****************
-```
-3. click on 'Repositories'
-4. Click on the repository you want to merge
-5. Click on 'Compare'
-6. Scroll down a few inches and click on 'switching the base'
-7. Click on 'Create Pull Request'
-8. Write message and click on 'Create Pull Request' again
-9. Click on View Pull Request
-10. Click on Merge Pull Request
-11. Click on Confirm Merge
-12. Log out of the lab's GitHub account
-
-# Unlinking an old git domain from a preexisting project
-
-**John M. A. Wojahn**
-
-**March 2021**
-
-Go to the Git tab and click on the gearwheel. Select Shell.
-
-```{bash, eval = F}
-git remote rm origin
-```
-
-# Processing seedling images for machine learning
-
-**John M.A. Wojahn and Sven Buerki**
-
-1. Download image from GoogleDrive
-2. Open image in Preview
-3. Drag mouse pointer to select rectangular area that encloses as much of the
-seedling as possible while excluding post-it notes and rulers
-4. Press ⌘K to crop
-5. Press alt⌘C to open color preferences tool
-6. Press “auto levels”
-7. Save image and add “_crop” to end of filename (but before extension)
-8. Reupload cropped image to a new folder on GoogleDrive
-
-# Counting number of dark objects against a light background automatically
-
-**John M. A. Wojahn**
-
-**April 2021**
-
-1. Make sure you have "EBImage" and "raster" installed
-2. Go to https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground
-3. Follow the pipeline on GitHub

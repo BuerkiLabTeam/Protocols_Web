@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-06-30" />
+<meta name="date" content="2021-08-23" />
 
 <title>Computational Protocols</title>
 
@@ -20,6 +20,15 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -384,18 +343,200 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Computational Protocols</h1>
-<h4 class="date">2021-06-30</h4>
+<h4 class="date">2021-08-23</h4>
 
 </div>
 
 
+<div id="how-to-set-up-ssh-authentication-on-github-required-september-2021" class="section level1">
+<h1><span class="header-section-number">1</span> How to set up SSH authentication on GitHub (REQUIRED September 2021)</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>August 2021</strong></p>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>Click ‘Tools’</li>
+<li>Click ‘Global Options’</li>
+<li>Click ‘Git/Svn’</li>
+<li>Click ‘Create Key’</li>
+<li>Close RandomArt window</li>
+<li>Click ‘View public key’</li>
+<li>Copy key</li>
+<li>Login to GitHub</li>
+<li>Click ‘Settings’</li>
+<li>Click ‘SSH and GPG keys’</li>
+<li>Click ‘New SSH key’</li>
+<li>Paste key from clipboard</li>
+<li>Name key</li>
+<li>Click ‘Add SSH key’</li>
+<li>Enter password if prompted</li>
+</ol>
+</div>
+<div id="how-to-make-an-r-project-that-links-up-to-github-updated-2021" class="section level1">
+<h1><span class="header-section-number">2</span> How to make an R project that links up to GitHub UPDATED 2021</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>August 2021</strong></p>
+<ol style="list-style-type: decimal">
+<li>Make a new R project in a new directory and click Create Git repository</li>
+<li>Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. TOGGLE THE SWITCH THAT SAYS ‘HTTPS’ TO ‘SSH’. Copy the URL that ends in “git” that appears.</li>
+<li>Go to the Git tab and click on the gearwheel. Select Shell.</li>
+<li>Add your url to the below code, then paste it into the terminal window that popped up.</li>
+</ol>
+<pre class="bash"><code>git remote add origin git@github.com:wojahn/MyProject.git</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
+message, and then hit Commit.</li>
+<li>Now push to fill the empty GitHub repository by pasting the below code:</li>
+</ol>
+<pre class="bash"><code>git push -u origin master</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.</li>
+</ol>
+</div>
+<div id="how-to-change-a-project-from-https-to-ssh-git-authentication" class="section level1">
+<h1><span class="header-section-number">3</span> How to change a project from HTTPS to SSH git authentication</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>August 2021</strong></p>
+<ol style="list-style-type: decimal">
+<li>Open project</li>
+<li>Go to the Git tab and click on the gearwheel. Select Shell.</li>
+<li>Paste exactly the code below then hit enter</li>
+</ol>
+<pre class="bash"><code>git remote rm origin</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Now we remake the origin using ssh, to do that edit the below code so that ‘wojahn’ is your handle and ‘MyProject’ is your existing GitHub project name. Once done editing, paste the code into terminal and hit enter.</li>
+</ol>
+<pre class="bash"><code>git remote add origin git@github.com:wojahn/MyProject.git</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Now make first new commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save (if any), enter a message, and then hit Commit.</li>
+<li>Now push to fill the empty GitHub repository by pasting exactly the below code:</li>
+</ol>
+<pre class="bash"><code>git push -u origin master</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.</li>
+</ol>
+</div>
+<div id="how-to-set-up-dual-factor-identification-for-github" class="section level1">
+<h1><span class="header-section-number">4</span> How to set up dual-factor identification for GitHub</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>August 2019</strong></p>
+<ol style="list-style-type: decimal">
+<li>Log into your GitHub account</li>
+<li>Click your avatar image in the upper righthand corner</li>
+<li>Click ‘Settings’</li>
+<li>Click ‘Account security’</li>
+<li>Make sure you have the Duo app on your smartphone</li>
+<li>Follow prompts to enable dual-factor authentication</li>
+<li>Once QR code appears, open Duo on your phone, following any prompts</li>
+<li>Click the “+” in Duo</li>
+<li>Scan the QR code with your camera</li>
+<li>Accept any prompts</li>
+<li>Now when you log onto GitHub it will send a push to your phone via Duo</li>
+<li>If you have SSH enabled for RStudio you won’t be prompted to do two-factor authentication for connecting to GitHub</li>
+</ol>
+</div>
+<div id="how-to-fork-your-public-repository-to-the-labs" class="section level1">
+<h1><span class="header-section-number">5</span> How to fork your public repository to the lab’s</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>October 2019</strong>
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account</p>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Search for your account’s name in the search bar</li>
+<li>Click on ‘Repositories’</li>
+<li>Click on the public repository you want to fork</li>
+<li>Click on ‘Fork’ (top left)</li>
+<li>Choose “BuerkiLab”</li>
+<li>Log out of the lab’s GitHub account</li>
+</ol>
+</div>
+<div id="how-to-fork-your-private-repository-to-the-labs" class="section level1">
+<h1><span class="header-section-number">6</span> How to fork your private repository to the lab’s</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>October 2019</strong>
+1. Go to your homepage
+2. Click on ‘Repositories’
+3. Click on your repository name
+4. Click on ‘Settings’
+5. Click on ‘Manage Access’
+6. Click on ‘Invite Collabortator’
+7. Search for “BuerkiLab” and click on the match
+8. Click on ‘Add BuerkiLab to this repository’
+9. Log out of your GitHub account
+10. Log into the lab’s GitHub Account</p>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Paste this into browser:</li>
+</ol>
+<pre class="bash"><code>https://github.com/myname/myprivaterepo/invitations</code></pre>
+<p>where myname is your GitHub handle and myprivaterepo is the name of your private repository
+12. Click on Accept invitation
+13. Click on Fork (top left)
+14. Choose BuerkiLab
+15. Log out of the lab’s GitHub account</p>
+</div>
+<div id="how-to-merge-your-repository-into-the-labs" class="section level1">
+<h1><span class="header-section-number">7</span> How to merge your repository into the lab’s</h1>
+<p><strong>John M.A. Wojahn</strong></p>
+<p><strong>October 2019</strong>
+1. Log out of your GitHub account
+2. Log into the lab’s GitHub Account</p>
+<pre class="bash"><code>Username: BuerkiLab
+Password: ****************</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>click on ‘Repositories’</li>
+<li>Click on the repository you want to merge</li>
+<li>Click on ‘Compare’</li>
+<li>Scroll down a few inches and click on ‘switching the base’</li>
+<li>Click on ‘Create Pull Request’</li>
+<li>Write message and click on ‘Create Pull Request’ again</li>
+<li>Click on View Pull Request</li>
+<li>Click on Merge Pull Request</li>
+<li>Click on Confirm Merge</li>
+<li>Log out of the lab’s GitHub account</li>
+</ol>
+</div>
+<div id="unlinking-an-old-git-domain-from-a-preexisting-project" class="section level1">
+<h1><span class="header-section-number">8</span> Unlinking an old git domain from a preexisting project</h1>
+<p><strong>John M. A. Wojahn</strong></p>
+<p><strong>March 2021</strong></p>
+<p>Go to the Git tab and click on the gearwheel. Select Shell.</p>
+<pre class="bash"><code>git remote rm origin</code></pre>
+</div>
+<div id="processing-seedling-images-for-machine-learning" class="section level1">
+<h1><span class="header-section-number">9</span> Processing seedling images for machine learning</h1>
+<p><strong>John M.A. Wojahn and Sven Buerki</strong></p>
+<ol style="list-style-type: decimal">
+<li>Download image from GoogleDrive</li>
+<li>Open image in Preview</li>
+<li>Drag mouse pointer to select rectangular area that encloses as much of the
+seedling as possible while excluding post-it notes and rulers</li>
+<li>Press ⌘K to crop</li>
+<li>Press alt⌘C to open color preferences tool</li>
+<li>Press “auto levels”</li>
+<li>Save image and add “_crop” to end of filename (but before extension)</li>
+<li>Reupload cropped image to a new folder on GoogleDrive</li>
+</ol>
+</div>
+<div id="counting-number-of-dark-objects-against-a-light-background-automatically" class="section level1">
+<h1><span class="header-section-number">10</span> Counting number of dark objects against a light background automatically</h1>
+<p><strong>John M. A. Wojahn</strong></p>
+<p><strong>April 2021</strong></p>
+<ol style="list-style-type: decimal">
+<li>Make sure you have “EBImage” and “raster” installed</li>
+<li>Go to <a href="https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground" class="uri">https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground</a></li>
+<li>Follow the pipeline on GitHub</li>
+</ol>
+</div>
 <div id="measuring-leaves-with-fiji" class="section level1">
-<h1><span class="header-section-number">1</span> Measuring Leaves With Fiji</h1>
+<h1><span class="header-section-number">11</span> Measuring Leaves With Fiji</h1>
 <p><strong>John M.A. Wojahn</strong></p>
 <p><strong>10/24/2018</strong></p>
 <p><strong>Note on nomenclature</strong>
@@ -425,11 +566,11 @@ This protocol can be usedboth on simple and compound leaves. If using on compoun
 <p>Repeat steps 1-17 for each image.</p>
 </div>
 <div id="how-to-use-mptp" class="section level1">
-<h1><span class="header-section-number">2</span> How to Use mPTP</h1>
+<h1><span class="header-section-number">12</span> How to Use mPTP</h1>
 <p><strong>John M.A. Wojahn</strong></p>
 <p><strong>October 2019</strong></p>
 <div id="ssh-ubuntu-method" class="section level2">
-<h2><span class="header-section-number">2.1</span> SSH Ubuntu Method</h2>
+<h2><span class="header-section-number">12.1</span> SSH Ubuntu Method</h2>
 <ol style="list-style-type: decimal">
 <li>Open FileZilla</li>
 <li>Fill out Host, Username, and Password and press “Quickconnect”</li>
@@ -445,7 +586,7 @@ ssh <a href="mailto:janedoe@123.123.123.123" class="email">janedoe@123.123.123.1
 <pre class="bash"><code>mptp --tree_file InsertRAxMLTreeNameHere --output_file            mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 --mcmc_startml --mcmc_runs 2 --mcmc_log</code></pre>
 </div>
 <div id="personal-ubuntu-method" class="section level2">
-<h2><span class="header-section-number">2.2</span> Personal Ubuntu Method</h2>
+<h2><span class="header-section-number">12.2</span> Personal Ubuntu Method</h2>
 <ol style="list-style-type: decimal">
 <li>Install Python3</li>
 </ol>
@@ -471,121 +612,6 @@ ssh <a href="mailto:janedoe@123.123.123.123" class="email">janedoe@123.123.123.1
 </ol>
 <pre class="bash"><code>mptp --tree_file InsertRAxMLTreeNameHere --output_file mptp_mcmc5myo_multi_its --outgroup MyOutgroupName --mcmc 5000000 --multi --mcmc_sample 1000 </code></pre>
 </div>
-</div>
-<div id="how-to-make-an-r-project-that-links-up-to-github" class="section level1">
-<h1><span class="header-section-number">3</span> How to make an R project that links up to GitHub</h1>
-<ol style="list-style-type: decimal">
-<li>Make a new R project in a new directory and click Create Git repository</li>
-<li>Make an EMPTY GitHub Repository named exactly the same as your project. DO NOT add a readme or license at this point. Copy the URL that ends in “git” that appears.</li>
-<li>Go to the Git tab and click on the gearwheel. Select Shell.</li>
-<li>Add your url to the below code, then paste it into the terminal window that popped up. This may produce a warning, that is ok.</li>
-</ol>
-<pre class="bash"><code>git remote add origin https://github.com/wojahn/MyProject.git</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Now make first commit on your computer. Do this by selecting Commit button in Git tab. Select the changes you want to save, enter a
-message, and then hit Commit.</li>
-<li>Now push to fill the empty GitHub repository by pasting the below code:</li>
-</ol>
-<pre class="bash"><code>git push -u origin master</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Now whenever you make significant changes, again click on the Commit button, select the changes you want to save, enter a message, and then hit Commit in the popup window. After doing that hit the Push button (the up arrow) to send it over to your remote GitHub repository.</li>
-</ol>
-</div>
-<div id="how-to-fork-your-public-repository-to-the-labs" class="section level1">
-<h1><span class="header-section-number">4</span> How to fork your public repository to the lab’s</h1>
-<ol style="list-style-type: decimal">
-<li>Log out of your GitHub account</li>
-<li>Log into the lab’s GitHub Account</li>
-</ol>
-<pre class="bash"><code>Username: BuerkiLab
-Password: ****************</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Search for your account’s name in the search bar</li>
-<li>Click on ‘Repositories’</li>
-<li>Click on the public repository you want to fork</li>
-<li>Click on ‘Fork’ (top left)</li>
-<li>Choose “BuerkiLab”</li>
-<li>Log out of the lab’s GitHub account</li>
-</ol>
-</div>
-<div id="how-to-fork-your-private-repository-to-the-labs" class="section level1">
-<h1><span class="header-section-number">5</span> How to fork your private repository to the lab’s</h1>
-<ol style="list-style-type: decimal">
-<li>Go to your homepage</li>
-<li>Click on ‘Repositories’</li>
-<li>Click on your repository name</li>
-<li>Click on ‘Settings’</li>
-<li>Click on ‘Manage Access’</li>
-<li>Click on ‘Invite Collabortator’</li>
-<li>Search for “BuerkiLab” and click on the match</li>
-<li>Click on ‘Add BuerkiLab to this repository’</li>
-<li>Log out of your GitHub account</li>
-<li>Log into the lab’s GitHub Account</li>
-</ol>
-<pre class="bash"><code>Username: BuerkiLab
-Password: ****************</code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li>Paste this into browser:</li>
-</ol>
-<pre class="bash"><code>https://github.com/myname/myprivaterepo/invitations</code></pre>
-<p>where myname is your GitHub handle and myprivaterepo is the name of your private repository
-12. Click on Accept invitation
-13. Click on Fork (top left)
-14. Choose BuerkiLab
-15. Log out of the lab’s GitHub account</p>
-</div>
-<div id="how-to-merge-your-repository-into-the-labs" class="section level1">
-<h1><span class="header-section-number">6</span> How to merge your repository into the lab’s</h1>
-<ol style="list-style-type: decimal">
-<li>Log out of your GitHub account</li>
-<li>Log into the lab’s GitHub Account</li>
-</ol>
-<pre class="bash"><code>Username: BuerkiLab
-Password: ****************</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>click on ‘Repositories’</li>
-<li>Click on the repository you want to merge</li>
-<li>Click on ‘Compare’</li>
-<li>Scroll down a few inches and click on ‘switching the base’</li>
-<li>Click on ‘Create Pull Request’</li>
-<li>Write message and click on ‘Create Pull Request’ again</li>
-<li>Click on View Pull Request</li>
-<li>Click on Merge Pull Request</li>
-<li>Click on Confirm Merge</li>
-<li>Log out of the lab’s GitHub account</li>
-</ol>
-</div>
-<div id="unlinking-an-old-git-domain-from-a-preexisting-project" class="section level1">
-<h1><span class="header-section-number">7</span> Unlinking an old git domain from a preexisting project</h1>
-<p><strong>John M. A. Wojahn</strong></p>
-<p><strong>March 2021</strong></p>
-<p>Go to the Git tab and click on the gearwheel. Select Shell.</p>
-<pre class="bash"><code>git remote rm origin</code></pre>
-</div>
-<div id="processing-seedling-images-for-machine-learning" class="section level1">
-<h1><span class="header-section-number">8</span> Processing seedling images for machine learning</h1>
-<p><strong>John M.A. Wojahn and Sven Buerki</strong></p>
-<ol style="list-style-type: decimal">
-<li>Download image from GoogleDrive</li>
-<li>Open image in Preview</li>
-<li>Drag mouse pointer to select rectangular area that encloses as much of the
-seedling as possible while excluding post-it notes and rulers</li>
-<li>Press ⌘K to crop</li>
-<li>Press alt⌘C to open color preferences tool</li>
-<li>Press “auto levels”</li>
-<li>Save image and add “_crop” to end of filename (but before extension)</li>
-<li>Reupload cropped image to a new folder on GoogleDrive</li>
-</ol>
-</div>
-<div id="counting-number-of-dark-objects-against-a-light-background-automatically" class="section level1">
-<h1><span class="header-section-number">9</span> Counting number of dark objects against a light background automatically</h1>
-<p><strong>John M. A. Wojahn</strong></p>
-<p><strong>April 2021</strong></p>
-<ol style="list-style-type: decimal">
-<li>Make sure you have “EBImage” and “raster” installed</li>
-<li>Go to <a href="https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground" class="uri">https://github.com/wojahn/CountingDarkObjectsAgainstLightBackground</a></li>
-<li>Follow the pipeline on GitHub</li>
-</ol>
 </div>
 
 
@@ -617,7 +643,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -626,6 +652,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
